@@ -20,8 +20,8 @@ public class Cliente {
 	public Cliente(String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
 			Calendar fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
-		super();
-		Nombre = nombre;
+		//super();
+		this.Nombre = nombre;
 		Apellido = apellido;
 		DNI = dNI;
 		this.pasaporte = pasaporte;

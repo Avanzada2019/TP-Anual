@@ -7,18 +7,18 @@ public class Direccion {
 	private String Calle;
 	private String Altura;
 	private String Ciudad;
-	private List Provincia;
-	private List Pais;
+	private Provincia provincia;
+	private Pais pais;
 	private String CodigoPostal;
 	
 	public Direccion() {}
-	public Direccion(String calle, String altura, String ciudad, List provincia, List pais, String codigoPostal) {
+	public Direccion(String calle, String altura, String ciudad, Provincia provincia, Pais pais, String codigoPostal) {
 		super();
 		Calle = calle;
 		Altura = altura;
 		Ciudad = ciudad;
-		Provincia = provincia;
-		Pais = pais;
+		this.provincia = provincia;
+		this.pais = pais;
 		CodigoPostal = codigoPostal;
 	}
 	public String getCalle() {
@@ -39,17 +39,17 @@ public class Direccion {
 	public void setCiudad(String ciudad) {
 		Ciudad = ciudad;
 	}
-	public List getProvincia() {
-		return Provincia;
+	public Provincia getProvincia() {
+		return provincia;
 	}
-	public void setProvincia(List provincia) {
-		Provincia = provincia;
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
-	public List getPais() {
-		return Pais;
+	public Pais getPais() {
+		return pais;
 	}
-	public void setPais(List pais) {
-		Pais = pais;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 	public String getCodigoPostal() {
 		return CodigoPostal;

@@ -6,18 +6,18 @@ public class Aeropuerto {
 
 	private String IDAeropuerto;
 	private String Ciudad;
-	private List Provincia;
-	private List Pais;
+	private Provincia provincia;
+	private Pais pais;
 	
 	
 	public Aeropuerto() {}
 	
-	public Aeropuerto(String iDAeropuerto, String ciudad, List provincia, List pais) {
+	public Aeropuerto(String iDAeropuerto, String ciudad, Provincia provincia, Pais pais) {
 		super();
 		IDAeropuerto = iDAeropuerto;
 		Ciudad = ciudad;
-		Provincia = provincia;
-		Pais = pais;
+		this.provincia = provincia;
+		this.pais = pais;
 	}
 	public String getIDAeropuerto() {
 		return IDAeropuerto;
@@ -31,16 +31,16 @@ public class Aeropuerto {
 	public void setCiudad(String ciudad) {
 		Ciudad = ciudad;
 	}
-	public List getProvincia() {
-		return Provincia;
+	public Provincia getProvincia() {
+		return provincia;
 	}
-	public void setProvincia(List provincia) {
-		Provincia = provincia;
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
 	}
-	public List getPais() {
-		return Pais;
+	public Pais getPais() {
+		return pais;
 	}
-	public void setPais(List pais) {
-		Pais = pais;
+	public void setPais(Pais pais) {
+		this.pais = pais;
 	}
 }
