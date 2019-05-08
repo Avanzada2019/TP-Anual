@@ -14,4 +14,8 @@ public class Cliente {
 	private Telefono telefono;
 	private PasajeroFrecuente pasajerofrecuente;
 	private Direccion direccion;
+	
+	
+	
+	
 }
