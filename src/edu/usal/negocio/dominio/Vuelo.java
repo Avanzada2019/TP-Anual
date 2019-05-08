@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class Vuelo {
 
-	private List NumeroVuelo;
+	private long NumeroVuelo;
 	private int CantidadAsientos;
 	private Aeropuerto AeropuertoSalida;
 	private Aeropuerto AeropuertoLlegada;
