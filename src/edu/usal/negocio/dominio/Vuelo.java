@@ -15,7 +15,7 @@ public class Vuelo {
 	
 	public Vuelo() {}
 	
-	public Vuelo(List numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
+	public Vuelo(long numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
 			Calendar fechaSalida, Calendar fechaLlegada, String tiempoVuelo) {
 		super();
 		NumeroVuelo = numeroVuelo;
@@ -26,10 +26,10 @@ public class Vuelo {
 		FechaLlegada = fechaLlegada;
 		TiempoVuelo = tiempoVuelo;
 	}
-	public List getNumeroVuelo() {
+	public long getNumeroVuelo() {
 		return NumeroVuelo;
 	}
-	public void setNumeroVuelo(List numeroVuelo) {
+	public void setNumeroVuelo(long numeroVuelo) {
 		NumeroVuelo = numeroVuelo;
 	}
 	public int getCantidadAsientos() {
