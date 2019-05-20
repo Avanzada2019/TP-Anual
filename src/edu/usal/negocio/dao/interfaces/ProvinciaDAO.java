@@ -7,4 +7,5 @@ import edu.usal.negocio.dominio.Provincia;
 public interface ProvinciaDAO
 {
 	public List<Provincia> obtenerProvincias();
+	
 }

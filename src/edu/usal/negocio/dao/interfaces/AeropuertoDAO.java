@@ -7,4 +7,5 @@ import edu.usal.negocio.dominio.Aeropuerto;
 public interface AeropuertoDAO
 {
 	public List<Aeropuerto> obtenerAeropuertos();
+	
 }

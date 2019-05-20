@@ -16,4 +16,5 @@ public class Alianza implements Serializable
 	{
 		this.nombre = nombre;
 	}
+	
 }

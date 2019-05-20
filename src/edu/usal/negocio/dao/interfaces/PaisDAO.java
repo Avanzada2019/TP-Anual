@@ -7,4 +7,5 @@ import edu.usal.negocio.dominio.Pais;
 public interface PaisDAO
 {
 	public List<Pais> obtenerPaises();
+	
 }

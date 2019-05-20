@@ -7,4 +7,5 @@ import edu.usal.negocio.dominio.Alianza;
 public interface AlianzaDAO
 {
 	public List<Alianza> obtenerAlianzas();
+	
 }
