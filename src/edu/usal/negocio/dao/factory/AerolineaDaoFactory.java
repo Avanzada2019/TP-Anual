@@ -1,4 +1,4 @@
-package edu.usa.negocio.dao.factory;
+package edu.usal.negocio.dao.factory;
 
 public class AerolineaDaoFactory {
 
