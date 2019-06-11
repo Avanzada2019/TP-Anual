@@ -28,4 +28,13 @@ public class PropertiesUtil {
 		return properties.getProperty("pathLineasAereasString");
 	}
 	
+	
+	public static String obtenerPathCliente() throws IOException, FileNotFoundException{
+		Properties properties = new Properties();
+		properties.load(new FileReader("config.properties"));
+		
+		return properties.getProperty("pathClientesString");
+	}
+	
+	
 }
