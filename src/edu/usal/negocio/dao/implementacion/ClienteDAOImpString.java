@@ -14,10 +14,10 @@ import edu.usal.util.PropertiesUtil;
 
 public class ClienteDAOImpString implements ClienteDAO {
 
-	public List<Cliente> obtenerCliente(){
-	   List<Cliente> aerolineas = new ArrayList<Cliente>();
+	public List<Cliente> ObtenerCliente(){
+	   List<Cliente> cliente = new ArrayList<Cliente>();
 	   String lineaActual = null;
-	   String linea = null;
+	   
 			try
 			{
 				File file = new File(PropertiesUtil.obtenerPathCliente());
@@ -26,10 +26,10 @@ public class ClienteDAOImpString implements ClienteDAO {
 				{
 					Cliente oCliente = new Cliente();
 					lineaActual = archivoEntrada.nextLine();
-					linea[] =  lineaActual.split(";");
+					String linea[] =  lineaActual.split(";");
 					oCliente.setNombre(linea[0]);
 					
-					aerolineas.add(stringToAerolinea(archivoEntrada.nextLine()));
+					cliente.add(oCliente);
 				}
 				archivoEntrada.close();
 			}
@@ -37,9 +37,16 @@ public class ClienteDAOImpString implements ClienteDAO {
 			{
 				e.printStackTrace();
 			}
-			return Cliente;
+			return cliente;
 	}
 		
+	
+	public void grabarCliente(List<Cliente> Cliente) {
+		
+		
+	}
+	
+	public void borrarCliente(List<Cliente> Cliente) {
 		
 	}
 	

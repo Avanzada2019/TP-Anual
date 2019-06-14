@@ -14,7 +14,7 @@ public class LineaAereaDAOImpString implements LineaAereaDAO{
 
 	
 	@Override
-	public List<LineaAerea> obtenerLineaAereas()
+	public List<LineaAerea> obtenerLineaAerea()
 	{
 		List<LineaAerea> aerolineas = new ArrayList<LineaAerea>();
 		try
@@ -45,9 +45,30 @@ public class LineaAereaDAOImpString implements LineaAereaDAO{
 		return aerolinea;
 	}
 
+	
 	@Override
-	public void grabarAerolineas(List<LineaAerea> aerolineas)
+	public void modificarLineaAerea(List<LineaAerea> LineaAerea) {
+		
+		
+	}
+	
+	
+	@Override
+	public void grabarLineaAerea(List<LineaAerea> aerolineas)
 	{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void bajaLineaAerea(List<LineaAerea> LineaAerea) {
+		
+		
+	}
+	
+	@Override
+	public void altaLineaAerea(List<LineaAerea> LineaAerea) {
+		
+	}
+	
+}

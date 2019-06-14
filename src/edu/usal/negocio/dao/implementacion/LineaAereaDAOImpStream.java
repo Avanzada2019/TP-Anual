@@ -12,24 +12,25 @@ import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.LineaAereaDAO;
 import edu.usal.negocio.dominio.LineaAerea;
+import edu.usal.negocio.dominio.Profesor;
 import edu.usal.util.PropertiesUtil;
 
 public class LineaAereaDAOImpStream implements LineaAereaDAO{
 
 	@Override
-	public List<LineaAerea> obtenerLineaAereas()
+	public List<LineaAerea> obtenerLineaAerea()
 	{
 		List<LineaAerea> aerolineas = new ArrayList<LineaAerea>();
 		try
 		{
 			FileInputStream fis = new FileInputStream(new File(PropertiesUtil.obtenerPathAerolineasStream()));
 			ObjectInputStream ois = new ObjectInputStream(fis);
+			
 			try
 			{
-				while(true)
-				{
-					aerolineas.add((LineaAerea)ois.readObject());
-				}
+					//aerolineas.add((LineaAerea)ois.readObject());
+					aerolineas = (List<LineaAerea>) ois.readObject();
+				
 			} 
 			catch (EOFException e) { }
 			ois.close();
@@ -42,7 +43,33 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 		return aerolineas;
 	}
 
-	public void grabarAerolineas(List<LineaAerea> aerolineas)
+	public void modificarLineaAerea(LineaAerea modificarLineaAerea) {
+		
+		//List<Profesor> listado = leerTodoProfesor();		
+		List <LineaAerea> listado = obtenerLineaAerea();
+		
+		for(LineaAerea la : listado)
+		{
+			
+			if (la.getNombreAerolinea().equals(modificarLineaAerea.getNombreAerolinea()))
+			{
+				la.setNombreAerolinea(modificarLineaAerea.getNombreAerolinea());
+			}
+		}
+		
+		FileOutputStream archStrSalida =  new FileOutputStream(PropertiesUtil.getInstance().getPropertyProfesor());
+		ObjectOutputStream ObjetoArchStrSalida = new ObjectOutputStream(archStrSalida);
+		
+		ObjetoArchStrSalida.writeObject(listado);
+		ObjetoArchStrSalida.close();	
+		
+		
+		
+	}
+	
+	
+	
+	public void grabarLineaAerea(List<LineaAerea> aerolineas)
 	{
 		try
 		{
@@ -60,8 +87,6 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 		}
 	}
 	
-<<<<<<< HEAD
+	
+	
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/Avanzada2019/TP-Anual.git

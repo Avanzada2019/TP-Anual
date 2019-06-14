@@ -3,7 +3,8 @@ package edu.usal.util;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
+import java.util.*;
+
 
 public class PropertiesUtil {
 	
@@ -35,6 +36,5 @@ public class PropertiesUtil {
 		
 		return properties.getProperty("pathClientesString");
 	}
-	
 	
 }
