@@ -11,7 +11,7 @@ public class Venta {
 	private LineaAerea Aerolinea;
 	private Calendar FechaVenta;
 	private String FormaPago;
-	
+	 
 	public Venta() {}
 	
 	public Venta(Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Calendar fechaVenta, String formaPago) {

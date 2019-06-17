@@ -93,7 +93,7 @@ public class PropertiesUtil {
 		return properties.getProperty("pathAeropuerto");
 	}
 	
-	
+	//
 	public static String obtenerPathVentasStream() throws IOException, FileNotFoundException{
 		Properties properties = new Properties();
 		properties.load(new FileReader("config.properties"));
