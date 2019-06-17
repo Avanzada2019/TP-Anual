@@ -1,7 +1,7 @@
 package edu.usal.negocio.dominio;
 
 import java.util.Calendar;
-
+ 
 public class Venta {
 	//Creado borrador: necesitamos un id que se cree automáticamente
 	private String idVenta;
