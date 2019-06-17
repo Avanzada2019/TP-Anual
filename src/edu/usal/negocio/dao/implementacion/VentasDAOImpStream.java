@@ -56,8 +56,6 @@ public class VentasDAOImpStream implements VentaDAO {
 					
 			listadoVenta = (List <Venta>) oArchivoDeEntrada.readObject();
 				
-					
-			listadoVenta = (List <Venta>) oArchivoDeEntrada.readObject();
 			oArchivoDeEntrada.close();
 					
 		}
