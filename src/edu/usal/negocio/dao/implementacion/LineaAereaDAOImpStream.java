@@ -98,9 +98,6 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 			ObjectInputStream oArchivoDeEntrada = new ObjectInputStream(archivoDeEntrada);
 			
 			listadoLineaAerea = (List <LineaAerea>) oArchivoDeEntrada.readObject();
-			
-			
-			listadoLineaAerea = (List <LineaAerea>) oArchivoDeEntrada.readObject();
 			oArchivoDeEntrada.close();
 			
 		}
