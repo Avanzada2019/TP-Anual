@@ -68,18 +68,11 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 	
 	}  // Cierre de modificarLineaAerea
 	
-public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException{
+	public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException{
 		
 		List <LineaAerea> listadoLineaAerea = obtenerLineaAerea(); // Cargo la todas las lineas en listadoLineaAerea
 		
-		for (LineaAerea l : listadoLineaAerea) {
-		   if (l.getNombreAerolinea().equals(BajarLineaAerea.getNombreAerolinea())) {
-			   
-			   l.setNombreAerolinea(BajarLineaAerea.getNombreAerolinea());
-			   l.setAlianza(BajarLineaAerea.getAlianza());
-			   l.setVuelos(BajarLineaAerea.getVuelos());
-		   }
-		}
+		listadoLineaAerea.removeIf(p->p.getNombreAerolinea().equals(BajarLineaAerea.getNombreAerolinea()));
 		
 		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
