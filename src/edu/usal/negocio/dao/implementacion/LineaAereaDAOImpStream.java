@@ -3,6 +3,7 @@ package edu.usal.negocio.dao.implementacion;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,14 +13,14 @@ import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.LineaAereaDAO;
 import edu.usal.negocio.dominio.LineaAerea;
-import edu.usal.negocio.dominio.Profesor;
 import edu.usal.util.PropertiesUtil;
 
 public class LineaAereaDAOImpStream implements LineaAereaDAO{
 
+
 	@Override
-	public List<LineaAerea> obtenerLineaAerea()
-	{
+	public List<LineaAerea> obtenerLineaAerea(){
+	
 		List<LineaAerea> aerolineas = new ArrayList<LineaAerea>();
 		try
 		{
@@ -28,9 +29,7 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 			
 			try
 			{
-					//aerolineas.add((LineaAerea)ois.readObject());
-					aerolineas = (List<LineaAerea>) ois.readObject();
-				
+					aerolineas = (List<LineaAerea>) ois.readObject();	
 			} 
 			catch (EOFException e) { }
 			ois.close();
@@ -41,11 +40,12 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 			e.printStackTrace();
 		}
 		return aerolineas;
-	}
+	} // Cierre de obtenerLineaAerea
 
-	public void modificarLineaAerea(LineaAerea modificarLineaAerea) {
-		
-		//List<Profesor> listado = leerTodoProfesor();		
+	
+	@Override
+	public void modificarLineaAerea(LineaAerea modificarLineaAerea) throws FileNotFoundException, IOException {
+				
 		List <LineaAerea> listado = obtenerLineaAerea();
 		
 		for(LineaAerea la : listado)
@@ -54,38 +54,80 @@ public class LineaAereaDAOImpStream implements LineaAereaDAO{
 			if (la.getNombreAerolinea().equals(modificarLineaAerea.getNombreAerolinea()))
 			{
 				la.setNombreAerolinea(modificarLineaAerea.getNombreAerolinea());
+				
+				
 			}
 		}
 		
-		FileOutputStream archStrSalida =  new FileOutputStream(PropertiesUtil.getInstance().getPropertyProfesor());
-		ObjectOutputStream ObjetoArchStrSalida = new ObjectOutputStream(archStrSalida);
+		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
 		
-		ObjetoArchStrSalida.writeObject(listado);
-		ObjetoArchStrSalida.close();	
+		oArchivoDeSalida.writeObject(listado);
+		oArchivoDeSalida.close(); 
 		
-		
-		
-	}
 	
+	}  // Cierre de modificarLineaAerea
 	
-	
-	public void grabarLineaAerea(List<LineaAerea> aerolineas)
-	{
+public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException{
+		
+		List <LineaAerea> listadoLineaAerea = obtenerLineaAerea(); // Cargo la todas las lineas en listadoLineaAerea
+		
+		for (LineaAerea l : listadoLineaAerea) {
+		   if (l.getNombreAerolinea().equals(BajarLineaAerea.getNombreAerolinea())) {
+			   
+			   l.setNombreAerolinea(BajarLineaAerea.getNombreAerolinea());
+			   l.setAlianza(BajarLineaAerea.getAlianza());
+			   l.setVuelos(BajarLineaAerea.getVuelos());
+		   }
+		}
+		
+		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
+		
+		oArchivoDeSalida.writeObject(listadoLineaAerea);
+		oArchivoDeSalida.close();
+		
+		// oArchivoDeSalida = es el Objeto ArchivoDeSalida
+		
+	}  // Cierre BajaLineaAerea
+
+
+	@Override
+	public void altaLineaAerea(LineaAerea AltalineaAerea) throws FileNotFoundException, IOException {
+		
+		List <LineaAerea> listadoLineaAerea = new ArrayList<LineaAerea>();
+		
 		try
 		{
-			FileOutputStream fos = new FileOutputStream(new File(PropertiesUtil.obtenerPathAerolineasStream()));
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			for (LineaAerea aerolinea : aerolineas)
-			{
-				oos.writeObject(aerolinea);
-			}
-			oos.close();
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();
+			
+			
+			FileInputStream archivoDeEntrada = new FileInputStream(PropertiesUtil.obtenerPathAerolineasStream());
+			ObjectInputStream oArchivoDeEntrada = new ObjectInputStream(archivoDeEntrada);
+			
+			listadoLineaAerea = (List <LineaAerea>) oArchivoDeEntrada.readObject();
+			
+			
+			listadoLineaAerea = (List <LineaAerea>) oArchivoDeEntrada.readObject();
+			oArchivoDeEntrada.close();
+			
 		}
-	}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}			
+				
+		FileOutputStream ArchivoDeSalida =  new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
+		
+		listadoLineaAerea.add(AltalineaAerea);
+        
+		oArchivoDeSalida.writeObject(listadoLineaAerea);
+		oArchivoDeSalida.close();
+		
+	};  // Cierre altaLineaAerea
+	
+	
+	
 	
 	
 	
