@@ -4,7 +4,7 @@ import java.util.Calendar;
  
 public class Venta {
 	//Creado borrador: necesitamos un id que se cree automáticamente
-	private String idVenta;
+	private long idVenta;
 	//
 	private Cliente cliente;
 	private Vuelo vuelo;
@@ -14,8 +14,9 @@ public class Venta {
 	 
 	public Venta() {}
 	
-	public Venta(Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Calendar fechaVenta, String formaPago) {
+	public Venta(long idVenta, Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Calendar fechaVenta, String formaPago) {
 		super();
+		idVenta = idVenta;
 		this.cliente = cliente;
 		this.vuelo = vuelo;
 		Aerolinea = aerolinea;
@@ -23,10 +24,10 @@ public class Venta {
 		FormaPago = formaPago;
 	}
 	// GET Y SET DE idVenta
-	public String getidVenta() {
+	public long getidVenta() {
 		return idVenta;
 	}
-	public void setidVenta(String idVenta) {
+	public void setidVenta(long idVenta) {
 		this.idVenta = idVenta;
 	}
 	//

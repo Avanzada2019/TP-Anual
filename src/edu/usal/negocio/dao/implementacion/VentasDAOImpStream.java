@@ -82,8 +82,10 @@ public class VentasDAOImpStream implements VentaDAO {
 		List <Venta> listadoVenta = obtenerVenta();
 		
 			for(Venta v : listadoVenta)
-			{
-				if (v.getVuelo().equals(ModificarVenta.getVuelo()));
+			{	
+	//		if v.getidVenta().equals(ModificarVenta.getidVenta());
+				if (String.valueOf(v.getidVenta()).equals(String.valueOf(ModificarVenta.getidVenta())))
+
 				{
 					v.setVuelo(ModificarVenta.getVuelo());
 				}
@@ -100,26 +102,15 @@ public class VentasDAOImpStream implements VentaDAO {
 	@Override
 	public void bajaVenta(Venta BajarVenta) throws FileNotFoundException, IOException {
 		
-		List <Venta> listadoVenta = obtenerVenta(); 
-				
-		for (Venta v : listadoVenta) {
-		
-			   if (v.getidVenta().equals(BajarVenta.getidVenta()))
-			   {
-				   v.setidVenta(BajarVenta.getidVenta());
-				   v.setCliente(BajarVenta.getCliente());
-				   v.setVuelo(BajarVenta.getVuelo());
-				   v.setAerolinea(BajarVenta.getAerolinea());
-				   v.setFechaVenta(BajarVenta.getFechaVenta());
-				   v.setFormaPago(BajarVenta.getFormaPago());
-			   }
-		}
-				
+		List <Venta> listadoVenta = obtenerVenta(); 	
+		listadoVenta.removeIf(v -> (String.valueOf(v.getidVenta()).equals(String.valueOf(BajarVenta.getidVenta()))));
+
 		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathVentasStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
 				
 		oArchivoDeSalida.writeObject(listadoVenta);
-		oArchivoDeSalida.close();
+		oArchivoDeSalida.close(); 
 	}
 
+	
 }
