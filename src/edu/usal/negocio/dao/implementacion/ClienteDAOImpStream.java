@@ -41,7 +41,7 @@ public class ClienteDAOImpStream implements ClienteDAO {
 	}
 
 
-	
+	//
 	@Override
 	public void registrarCliente(Cliente registrarCliente) throws IOException {
 		List <Cliente> listadoClientes = new ArrayList<Cliente>();
