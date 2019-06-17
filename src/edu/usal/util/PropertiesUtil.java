@@ -11,7 +11,7 @@ public class PropertiesUtil {
 //EZE ---> DECLARACIÓN DE PROPERTY
 	private static Properties properties = new Properties();
 	private static PropertiesUtil objeto = null;
-	
+	 
 	private PropertiesUtil() throws FileNotFoundException , IOException
 	{
 		properties.load(new FileReader("config.properties"));

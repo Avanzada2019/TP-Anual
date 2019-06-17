@@ -20,7 +20,7 @@ import edu.usal.negocio.dominio.Vuelo;
 import edu.usal.util.PropertiesUtil;
 
 public class VentasDAOImpStream implements VentaDAO {
-
+ 
 	@Override
 	public List<Venta> obtenerVenta() {
 		List<Venta> ventas = new ArrayList<Venta>();
@@ -28,7 +28,7 @@ public class VentasDAOImpStream implements VentaDAO {
 		{
 			FileInputStream fis = new FileInputStream(new File(PropertiesUtil.obtenerPathVentasStream()));
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			
+			  
 			try
 			{
 					ventas = (List<Venta>) ois.readObject();	
