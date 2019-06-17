@@ -1,3 +1,5 @@
+package edu.usal.util;
+
 import java.util.*;
 
 public class IOGeneral {

@@ -13,6 +13,7 @@ import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.VueloDAO;
 import edu.usal.negocio.dominio.Vuelo;
+import edu.usal.negocio.dominio.Vuelo;
 import edu.usal.util.PropertiesUtil;
 
 public class VueloDAOImpStream implements VueloDAO{
@@ -72,13 +73,7 @@ public void bajaVuelo(Vuelo BajarVuelo) throws FileNotFoundException, IOExceptio
 		
 		List <Vuelo> listadoVuelo = obtenerVuelo(); // Cargo la todas las lineas en listadoVuelo
 		
-		for (Vuelo vu : listadoVuelo) {
-		   if (vu.getNumeroVuelo().equals(BajarVuelo.getNumeroVuelo())) {
-			   
-		   //vu.setNombreAerolinea(BajarVuelo.getNombreAerolinea());
-			   
-		   }
-		}
+		listadoVuelo.removeIf(p -> p.getNumeroVuelo().equals(BajarVuelo.getNumeroVuelo()));
 		
 		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
@@ -100,11 +95,8 @@ public void bajaVuelo(Vuelo BajarVuelo) throws FileNotFoundException, IOExceptio
 		{
 			
 			
-			FileInputStream archivoDeEntrada = new FileInputStream(PropertiesUtil.obtenerPathAerolineasStream());
+			FileInputStream archivoDeEntrada = new FileInputStream(PropertiesUtil.obtenerPathVueloStream());
 			ObjectInputStream oArchivoDeEntrada = new ObjectInputStream(archivoDeEntrada);
-			
-			listadoVuelo = (List <Vuelo>) oArchivoDeEntrada.readObject();
-			
 			
 			listadoVuelo = (List <Vuelo>) oArchivoDeEntrada.readObject();
 			oArchivoDeEntrada.close();
@@ -115,7 +107,7 @@ public void bajaVuelo(Vuelo BajarVuelo) throws FileNotFoundException, IOExceptio
 			System.out.println(e.getMessage());
 		}			
 				
-		FileOutputStream ArchivoDeSalida =  new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		FileOutputStream ArchivoDeSalida =  new FileOutputStream(PropertiesUtil.obtenerPathVueloStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
 		
 		listadoVuelo.add(AltaVuelo);
