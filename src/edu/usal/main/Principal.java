@@ -6,7 +6,7 @@ public class Principal {
 
 	public static void main(String[] args) throws Exception {
 		
-		System.out.println("Update de Sergio*******");
+		System.out.println("Update de Sergio2*******");
 		
 		
 		int opcionDeMenu=0;
