@@ -1,11 +1,12 @@
 package edu.usal.main;
 import edu.usal.util.*;
 
+
 public class Principal {
 
 	public static void main(String[] args) throws Exception {
 		
-		System.out.println("Update de Javier 8/5/2019");
+		System.out.println("Update de Sergio 17/6/2019");
 		
 		
 		int opcionDeMenu=0;
