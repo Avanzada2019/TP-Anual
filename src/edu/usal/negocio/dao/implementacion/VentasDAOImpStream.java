@@ -100,10 +100,10 @@ public class VentasDAOImpStream implements VentaDAO {
 	@Override
 	public void bajaVenta(Venta BajarVenta) throws FileNotFoundException, IOException {
 		
-		List <Venta> listadoVenta = obtenerVenta(); // Cargo v todas vs lineas en listadoVenta
+		List <Venta> listadoVenta = obtenerVenta(); 
 				
 		for (Venta v : listadoVenta) {
-		//	   if (v.getNombreAerolinea().equals(BajarVenta.getNombreAerolinea()))
+		
 			   if (v.getidVenta().equals(BajarVenta.getidVenta()))
 			   {
 				   v.setidVenta(BajarVenta.getidVenta());
