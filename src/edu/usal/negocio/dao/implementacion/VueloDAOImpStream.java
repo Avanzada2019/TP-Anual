@@ -48,14 +48,14 @@ public class VueloDAOImpStream implements VueloDAO{
 				
 		List <Vuelo> listado = obtenerVuelo();
 		
-		for(Vuelo la : listado)
+		for(Vuelo vu : listado)
 		{
 			
-			if (la.getNombreAerolinea().equals(modificarVuelo.getNombreAerolinea()))
+			if (vu.getNumeroVuelo().equals(modificarVuelo.getNumeroVuelo()));
+			
 			{
-				la.setNombreAerolinea(modificarVuelo.getNombreAerolinea());
-				
-				
+				vu.setNumeroVuelo(modificarVuelo.getNumeroVuelo());
+						
 			}
 		}
 		
@@ -72,12 +72,11 @@ public void bajaVuelo(Vuelo BajarVuelo) throws FileNotFoundException, IOExceptio
 		
 		List <Vuelo> listadoVuelo = obtenerVuelo(); // Cargo la todas las lineas en listadoVuelo
 		
-		for (Vuelo l : listadoVuelo) {
-		   if (l.getNombreAerolinea().equals(BajarVuelo.getNombreAerolinea())) {
+		for (Vuelo vu : listadoVuelo) {
+		   if (vu.getNumeroVuelo().equals(BajarVuelo.getNumeroVuelo())) {
 			   
-			   l.setNombreAerolinea(BajarVuelo.getNombreAerolinea());
-			   l.setAlianza(BajarVuelo.getAlianza());
-			   l.setVuelos(BajarVuelo.getVuelos());
+		   //vu.setNombreAerolinea(BajarVuelo.getNombreAerolinea());
+			   
 		   }
 		}
 		

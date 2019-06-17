@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class Vuelo {
 
-	private long NumeroVuelo;
+	private String NumeroVuelo;
 	private int CantidadAsientos;
 	private Aeropuerto AeropuertoSalida;
 	private Aeropuerto AeropuertoLlegada;
@@ -15,7 +15,7 @@ public class Vuelo {
 	
 	public Vuelo() {}
 	
-	public Vuelo(long numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
+	public Vuelo(String numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
 			Calendar fechaSalida, Calendar fechaLlegada, String tiempoVuelo) {
 		super();
 		NumeroVuelo = numeroVuelo;
@@ -26,10 +26,10 @@ public class Vuelo {
 		FechaLlegada = fechaLlegada;
 		TiempoVuelo = tiempoVuelo;
 	}
-	public long getNumeroVuelo() {
+	public String getNumeroVuelo() {
 		return NumeroVuelo;
 	}
-	public void setNumeroVuelo(long numeroVuelo) {
+	public void setNumeroVuelo(String numeroVuelo) {
 		NumeroVuelo = numeroVuelo;
 	}
 	public int getCantidadAsientos() {
