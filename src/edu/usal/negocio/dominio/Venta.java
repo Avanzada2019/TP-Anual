@@ -3,7 +3,9 @@ package edu.usal.negocio.dominio;
 import java.util.Calendar;
 
 public class Venta {
-	
+	//Creado borrador: necesitamos un id que se cree automáticamente
+	private String idVenta;
+	//
 	private Cliente cliente;
 	private Vuelo vuelo;
 	private LineaAerea Aerolinea;
@@ -20,6 +22,14 @@ public class Venta {
 		FechaVenta = fechaVenta;
 		FormaPago = formaPago;
 	}
+	// GET Y SET DE idVenta
+	public String getidVenta() {
+		return idVenta;
+	}
+	public void setidVenta(String idVenta) {
+		this.idVenta = idVenta;
+	}
+	//
 	public Cliente getCliente() {
 		return cliente;
 	}

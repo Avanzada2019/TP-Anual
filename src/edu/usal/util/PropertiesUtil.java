@@ -87,16 +87,20 @@ public class PropertiesUtil {
 		
 		return properties.getProperty("pathAeropuertosStream");
 	}
-	
-	
+		
 	public static String getPropertyAeropuerto()
 	{
 		return properties.getProperty("pathAeropuerto");
 	}
 	
 	
-	public static String getPropertyLineaAerea()
-	{
-		return properties.getProperty("pathLineaAerea");
+	public static String obtenerPathVentasStream() throws IOException, FileNotFoundException{
+		Properties properties = new Properties();
+		properties.load(new FileReader("config.properties"));
+		
+		return properties.getProperty("pathVentasStream");
 	}
+	
+	
+
 }
