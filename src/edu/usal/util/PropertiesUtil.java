@@ -56,6 +56,7 @@ public class PropertiesUtil {
 		properties.load(new FileReader("config.properties"));
 		return properties.getProperty("pathVueloStream");
 	}
+	// Modificado
 	
 	/* Se crea metodo para la aerolinea en caso que sea del tipo string */
 	public static String obtenerPathAerolineasString() throws IOException, FileNotFoundException{
