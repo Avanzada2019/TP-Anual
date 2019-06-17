@@ -8,7 +8,6 @@ import java.util.*;
 
 public class PropertiesUtil {
 	
-//EZE ---> DECLARACIÓN DE PROPERTY
 	private static Properties properties = new Properties();
 	private static PropertiesUtil objeto = null;
 	 
@@ -22,43 +21,42 @@ public class PropertiesUtil {
 			objeto = new PropertiesUtil();
 		return objeto;
 	}
-//
-	
-	
+
 	public static String obtenerPathAerolineasStream() throws IOException, FileNotFoundException{
 		Properties properties = new Properties();
 		properties.load(new FileReader("config.properties"));
-		
 		return properties.getProperty("pathLineasAereasStream");
 	}
-	
-	
-	
-	
-	/* Se crea metodo para la aerolinea en caso que sea del tipo string */
-	
-	public static String obtenerPathAerolineasString() throws IOException, FileNotFoundException{
+
+	public static String obtenerPathClienteStream() throws IOException, FileNotFoundException{
 		Properties properties = new Properties();
 		properties.load(new FileReader("config.properties"));
-		
-		return properties.getProperty("pathLineasAereasString");
+		return properties.getProperty("pathClientesStream");
 	}
-	
-	
-	public static String obtenerPathCliente() throws IOException, FileNotFoundException{
-		Properties properties = new Properties();
-		properties.load(new FileReader("config.properties"));
 		
-		return properties.getProperty("pathClientesString");
-	}
-	
-	
-//Eze String
 	public static String obtenerPathAlianzas() throws FileNotFoundException, IOException{
 		Properties properties = new Properties();
 		return properties.getProperty("pathAlianzas");
 	}
 	
+	public static String obtenerPathAeropuertosStream() throws IOException, FileNotFoundException{
+		Properties properties = new Properties();
+		properties.load(new FileReader("config.properties"));
+		return properties.getProperty("pathAeropuertosStream");
+	}
+	
+	public static String obtenerPathVentasStream() throws IOException, FileNotFoundException{
+		Properties properties = new Properties();
+		properties.load(new FileReader("config.properties"));
+		return properties.getProperty("pathVentasStream");
+	}
+	
+	/* Se crea metodo para la aerolinea en caso que sea del tipo string */
+	public static String obtenerPathAerolineasString() throws IOException, FileNotFoundException{
+		Properties properties = new Properties();
+		properties.load(new FileReader("config.properties"));
+		return properties.getProperty("pathLineasAereasString");
+	}
 	
 	public static String obtenerPathPaises()
 	{
@@ -66,41 +64,21 @@ public class PropertiesUtil {
 		return properties.getProperty("pathPaises");
 	}
 	
-	
 	public static String obtenerPathAeropuertos()
 	{
 		Properties properties = new Properties();
 		return properties.getProperty("pathAeropuertos");
 	}
 	
-	
 	public static String obtenerPathProvincias() throws FileNotFoundException, IOException
 	{
 		Properties properties = new Properties();
 		return properties.getProperty("pathProvincias");
 	}
-// 
-// Eze STREAM
-	public static String obtenerPathAeropuertosStream() throws IOException, FileNotFoundException{
-		Properties properties = new Properties();
-		properties.load(new FileReader("config.properties"));
-		
-		return properties.getProperty("pathAeropuertosStream");
-	}
-		
+	
 	public static String getPropertyAeropuerto()
 	{
 		return properties.getProperty("pathAeropuerto");
 	}
-	
-	//
-	public static String obtenerPathVentasStream() throws IOException, FileNotFoundException{
-		Properties properties = new Properties();
-		properties.load(new FileReader("config.properties"));
-		
-		return properties.getProperty("pathVentasStream");
-	}
-	
-	
 
 }
