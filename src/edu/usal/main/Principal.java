@@ -42,7 +42,7 @@ public class Principal {
 			} // Fin del switch
 			
 	
-		}while (opcionDeMenu!=6);  // Fin del menú General
+		}while (opcionDeMenu!=6);  // Fin del menu General
 		
 
    } //Cierre del Main

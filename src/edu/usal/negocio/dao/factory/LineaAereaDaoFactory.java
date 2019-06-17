@@ -6,7 +6,7 @@ import edu.usal.negocio.dao.implementacion.LineaAereaDAOImpString;
 
 public class LineaAereaDaoFactory {
 
-	public static LineaAereaDAO obtenerrAerolineaDAO(String tipo)
+	public static LineaAereaDAO obtenerAerolineaDAO(String tipo)
 	{
 		if("String".equals(tipo))
 			return new LineaAereaDAOImpString();
