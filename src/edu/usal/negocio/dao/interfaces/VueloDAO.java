@@ -8,7 +8,7 @@ import edu.usal.negocio.dominio.Vuelo;
 
 public interface VueloDAO {
 
-	public List<Vuelo> obtenerVuelo();  // Carga las Ventas en memoria desde un archivo
+	public List<Vuelo> obtenerVuelo();  // Carga los Vuelos en memoria desde un archivo
 		
 	public void altaVuelo(Vuelo AltaVuelo) throws FileNotFoundException, IOException;
 		
