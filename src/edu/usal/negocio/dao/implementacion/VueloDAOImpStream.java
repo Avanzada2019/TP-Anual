@@ -24,7 +24,7 @@ public class VueloDAOImpStream implements VueloDAO{
 		List<Vuelo> aerolineas = new ArrayList<Vuelo>();
 		try
 		{
-			FileInputStream fis = new FileInputStream(new File(PropertiesUtil.obtenerPathAerolineasStream()));
+			FileInputStream fis = new FileInputStream(new File(PropertiesUtil.obtenerPathVueloStream()));
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			
 			try
@@ -60,7 +60,7 @@ public class VueloDAOImpStream implements VueloDAO{
 			}
 		}
 		
-		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathVueloStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
 		
 		oArchivoDeSalida.writeObject(listado);
@@ -75,7 +75,7 @@ public void bajaVuelo(Vuelo BajarVuelo) throws FileNotFoundException, IOExceptio
 		
 		listadoVuelo.removeIf(p -> p.getNumeroVuelo().equals(BajarVuelo.getNumeroVuelo()));
 		
-		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathAerolineasStream());
+		FileOutputStream ArchivoDeSalida = new FileOutputStream(PropertiesUtil.obtenerPathVueloStream());
 		ObjectOutputStream oArchivoDeSalida = new ObjectOutputStream(ArchivoDeSalida);
 		
 		oArchivoDeSalida.writeObject(listadoVuelo);
