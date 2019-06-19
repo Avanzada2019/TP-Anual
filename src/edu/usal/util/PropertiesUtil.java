@@ -33,11 +33,6 @@ public class PropertiesUtil {
 		properties.load(new FileReader("config.properties"));
 		return properties.getProperty("pathClientesStream");
 	}
-		
-	public static String obtenerPathAlianzas() throws FileNotFoundException, IOException{
-		Properties properties = new Properties();
-		return properties.getProperty("pathAlianzas");
-	}
 	
 	public static String obtenerPathAeropuertosStream() throws IOException, FileNotFoundException{
 		Properties properties = new Properties();
@@ -56,7 +51,6 @@ public class PropertiesUtil {
 		properties.load(new FileReader("config.properties"));
 		return properties.getProperty("pathVueloStream");
 	}
-	// Modificado3
 	
 	/* Se crea metodo para la aerolinea en caso que sea del tipo string */
 	public static String obtenerPathAerolineasString() throws IOException, FileNotFoundException{
@@ -65,27 +59,10 @@ public class PropertiesUtil {
 		return properties.getProperty("pathLineasAereasString");
 	}
 	
-	public static String obtenerPathPaises()
-	{
-		Properties properties = new Properties();
-		return properties.getProperty("pathPaises");
-	}
-	
-	public static String obtenerPathAeropuertos()
-	{
-		Properties properties = new Properties();
-		return properties.getProperty("pathAeropuertos");
-	}
-	
-	public static String obtenerPathProvincias() throws FileNotFoundException, IOException
-	{
-		Properties properties = new Properties();
-		return properties.getProperty("pathProvincias");
-	}
-	
+	/*
 	public static String getPropertyAeropuerto()
 	{
 		return properties.getProperty("pathAeropuerto");
-	}
+	}*/
 
 }

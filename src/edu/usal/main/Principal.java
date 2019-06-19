@@ -6,7 +6,7 @@ public class Principal {
 
 	public static void main(String[] args) throws Exception {
 		
-		System.out.println("Update de Sergio2*******");
+		System.out.println("**");
 		
 		
 		int opcionDeMenu=0;
@@ -21,8 +21,6 @@ public class Principal {
 			
 			switch (opcionDeMenu) {
 				case 1: // Gestion de Lineas Aereas
-						
-						
 					
 						break;
 	
@@ -48,7 +46,5 @@ public class Principal {
 
    } //Cierre del Main
 
-	
-	
 	
 } // Cierre del Principal.
