@@ -59,6 +59,27 @@ public class PropertiesUtil {
 		return properties.getProperty("pathLineasAereasString");
 	}
 	
+	
+	public static String getSqlPath()
+	{
+		return properties.getProperty("sqlPath");
+	}
+	
+	public static String getSqlUser()
+	{
+		return properties.getProperty("sqlUser");
+	}
+	
+	public static String getSqlPwd()
+	{
+		return properties.getProperty("sqlPwd");
+	}
+	public static String getSqlDriver()
+	{
+		return properties.getProperty("sqlDriver");
+	}
+	
+	
 	/*
 	public static String getPropertyAeropuerto()
 	{
