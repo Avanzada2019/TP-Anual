@@ -1,6 +1,8 @@
 package edu.usal.negocio.dao.implementacion;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -46,28 +48,42 @@ public class LineaAereaDAOImpString implements LineaAereaDAO{
 	}
 
 	
-	@Override
 	public void modificarLineaAerea(List<LineaAerea> LineaAerea) {
 		
 		
 	}
 	
 	
-	@Override
 	public void grabarLineaAerea(List<LineaAerea> aerolineas)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 	
-	@Override
 	public void bajaLineaAerea(List<LineaAerea> LineaAerea) {
 		
 		
 	}
 	
-	@Override
 	public void altaLineaAerea(List<LineaAerea> LineaAerea) {
+		
+	}
+
+	@Override
+	public void altaLineaAerea(LineaAerea AltalineaAerea) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void modificarLineaAerea(LineaAerea ModificarlineaAerea) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
 		
 	}
 	

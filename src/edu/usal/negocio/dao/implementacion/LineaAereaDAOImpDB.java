@@ -1,6 +1,5 @@
 package edu.usal.negocio.dao.implementacion;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,7 +44,7 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 			DBCon = getConnection();
 			stm = DBCon.createStatement();
 			rsLineaAerea = stm.executeQuery("SELECT * from lineasAereas"); // lineasAereas corresponde con la tabla de la BD aerolinea
-			psAlianza = DBCon.prepareStatement("SELECT * from alianza WHERE nombre_alianza =?"); // Esta tabla aun no está en la BD.
+			psAlianza = DBCon.prepareStatement("SELECT * from alianza WHERE nombre_alianza =?"); // Esta tabla aun no esta en la BD.
 			List <LineaAerea> aerolineas = new ArrayList<LineaAerea>();
 			
 			while (rsLineaAerea.next()) {
@@ -83,7 +82,7 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		} // Cierre de finally
 		return null;
 		
-	} // Cierre del método obtenerLineaAerea
+	} // Cierre del metodo obtenerLineaAerea
 	
 	
 	
