@@ -1,15 +1,17 @@
 package edu.usal.negocio.dominio;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Cliente {
 
 	private String Nombre;
 	private String Apellido;
-	private String DNI;
-	private Pasaporte pasaporte;
+	private static String DNI;
+	private static Pasaporte pasaporte;
 	private String CUIT_CUIL;
-	private Calendar FechaDeNacimiento;
+	private Calendar FechaDeNacimiento = Calendar.getInstance();
+	java.util.Date fechanac = FechaDeNacimiento.getTime();
 	private String Email;
 	private Telefono telefono;
 	private PasajeroFrecuente pasajerofrecuente;
@@ -18,7 +20,7 @@ public class Cliente {
 	public Cliente() {}
 	
 	public Cliente(String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
-			Calendar fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
+			Calendar fechaDeNacimiento, Date fechanac, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
 		//super();
 		this.Nombre = nombre;
@@ -27,11 +29,14 @@ public class Cliente {
 		this.pasaporte = pasaporte;
 		CUIT_CUIL = cUIT_CUIL;
 		FechaDeNacimiento = fechaDeNacimiento;
+		fechanac = fechanac;
 		Email = email;
 		this.telefono = telefono;
 		this.pasajerofrecuente = pasajerofrecuente;
 		this.direccion = direccion;
 	}
+	
+
 	public String getNombre() {
 		return Nombre;
 	}
@@ -44,13 +49,13 @@ public class Cliente {
 	public void setApellido(String apellido) {
 		Apellido = apellido;
 	}
-	public String getDNI() {
+	public static String getDNI() {
 		return DNI;
 	}
 	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
-	public Pasaporte getPasaporte() {
+	public static Pasaporte getPasaporte() {
 		return pasaporte;
 	}
 	public void setPasaporte(Pasaporte pasaporte) {
@@ -67,6 +72,13 @@ public class Cliente {
 	}
 	public void setFechaDeNacimiento(Calendar fechaDeNacimiento) {
 		FechaDeNacimiento = fechaDeNacimiento;
+	}
+	public Date getFechanac() {
+		return fechanac;
+	}
+
+	public void setFechanac(Date fechanac) {
+		this.fechanac = fechanac;
 	}
 	public String getEmail() {
 		return Email;

@@ -18,7 +18,7 @@ public class ClienteDAOImpStream implements ClienteDAO {
 
 	
 	@Override
-	public List<Cliente> obtenerCliente() {
+	public List<Cliente> obtenerClientes() {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try
 		{

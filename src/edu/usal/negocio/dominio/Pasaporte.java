@@ -5,14 +5,16 @@ import java.util.Calendar;
 public class Pasaporte {
 	
 	private String NumeroPasaporte;
-	private String PaisEmision;
+	private Pais PaisEmision;
 	private String AutoridadEmision;
-	private Calendar FechaEmision;
+	private Calendar FechaEmision= Calendar.getInstance();
+	java.util.Date Fechaemision = FechaEmision.getTime();
 	private Calendar FechaVencimiento;
+	java.util.Date Fechavencimiento = FechaEmision.getTime();
 	
 	public Pasaporte() {}
 	
-	public Pasaporte(String numeroPasaporte, String paisEmision, String autoridadEmision, Calendar fechaEmision,
+	public Pasaporte(String numeroPasaporte, Pais paisEmision, String autoridadEmision, Calendar fechaEmision,
 			Calendar fechaVencimiento) {
 		super();
 		NumeroPasaporte = numeroPasaporte;
@@ -27,10 +29,10 @@ public class Pasaporte {
 	public void setNumeroPasaporte(String numeroPasaporte) {
 		NumeroPasaporte = numeroPasaporte;
 	}
-	public String getPaisEmision() {
+	public Pais getPaisEmision() {
 		return PaisEmision;
 	}
-	public void setPaisEmision(String paisEmision) {
+	public void setPaisEmision(Pais paisEmision) {
 		PaisEmision = paisEmision;
 	}
 	public String getAutoridadEmision() {
@@ -51,5 +53,23 @@ public class Pasaporte {
 	public void setFechaVencimiento(Calendar fechaVencimiento) {
 		FechaVencimiento = fechaVencimiento;
 	}
+
+	public java.util.Date getFechaemision() {
+		return Fechaemision;
+	}
+
+	public void setFechaemision(java.util.Date fechaemision) {
+		Fechaemision = fechaemision;
+	}
+
+	public java.util.Date getFechavencimiento() {
+		return Fechavencimiento;
+	}
+
+	public void setFechavencimiento(java.util.Date fechavencimiento) {
+		Fechavencimiento = fechavencimiento;
+	}
+	
+	
 
 }

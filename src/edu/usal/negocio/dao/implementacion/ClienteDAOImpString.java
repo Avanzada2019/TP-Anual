@@ -14,7 +14,7 @@ import edu.usal.util.PropertiesUtil;
 
 public class ClienteDAOImpString implements ClienteDAO {
 
-	public List<Cliente> ObtenerCliente(){
+	public List<Cliente> ObtenerClientes(){
 	   List<Cliente> cliente = new ArrayList<Cliente>();
 	   String lineaActual = null;
 	   

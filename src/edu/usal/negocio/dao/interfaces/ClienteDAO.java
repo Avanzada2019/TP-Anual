@@ -8,7 +8,8 @@ import edu.usal.negocio.dominio.Cliente;
 
 public interface ClienteDAO {
 
-	public List<Cliente> obtenerCliente();
+	public List<Cliente> obtenerClientes();
+	public Cliente obtenerCliente();
 
 
 	public void registrarCliente(Cliente registrarCliente)throws FileNotFoundException, IOException;
