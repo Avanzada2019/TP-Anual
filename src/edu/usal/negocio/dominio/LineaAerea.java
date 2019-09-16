@@ -5,28 +5,39 @@ import java.awt.List;
 public class LineaAerea {
 
 	private String NombreAerolinea;
-	private List Alianza;
+	private Alianza alianza;
 	private Vuelo vuelos;
+	private String codigo; 
 	
 	public LineaAerea() {}
 	
-	public LineaAerea(String nombreAerolinea, List alianza, Vuelo vuelos) {
+	public LineaAerea(String nombreAerolinea, Alianza alianza, Vuelo vuelos, String codigo) {
 		super();
 		NombreAerolinea = nombreAerolinea;
-		Alianza = alianza;
+		this.alianza = alianza;
 		this.vuelos = vuelos;
+		this.codigo = codigo;
 	}
+	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	public String getNombreAerolinea() {
 		return NombreAerolinea;
 	}
 	public void setNombreAerolinea(String nombreAerolinea) {
 		NombreAerolinea = nombreAerolinea;
 	}
-	public List getAlianza() {
-		return Alianza;
+	public Alianza getAlianza() {
+		return alianza;
 	}
-	public void setAlianza(List alianza) {
-		Alianza = alianza;
+	public void setAlianza(Alianza alianza) {
+		this.alianza = alianza;
 	}
 	public Vuelo getVuelos() {
 		return vuelos;
