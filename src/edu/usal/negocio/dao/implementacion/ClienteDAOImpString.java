@@ -1,15 +1,14 @@
 package edu.usal.negocio.dao.implementacion;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import edu.usal.negocio.dao.interfaces.ClienteDAO;
-import edu.usal.negocio.dao.interfaces.LineaAereaDAO;
-import edu.usal.negocio.dominio.Alianza;
 import edu.usal.negocio.dominio.Cliente;
-import edu.usal.negocio.dominio.LineaAerea;
 import edu.usal.util.PropertiesUtil;
 
 public class ClienteDAOImpString implements ClienteDAO {
@@ -20,7 +19,7 @@ public class ClienteDAOImpString implements ClienteDAO {
 	   
 			try
 			{
-				File file = new File(PropertiesUtil.obtenerPathCliente());
+				File file = new File(PropertiesUtil.obtenerPathClienteStream());
 				Scanner archivoEntrada = new Scanner(file);
 				while(archivoEntrada.hasNextLine())
 				{
@@ -47,6 +46,41 @@ public class ClienteDAOImpString implements ClienteDAO {
 	}
 	
 	public void borrarCliente(List<Cliente> Cliente) {
+		
+	}
+
+
+	@Override
+	public List<Cliente> obtenerClientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Cliente obtenerCliente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void registrarCliente(Cliente registrarCliente) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void modificarCliente(Cliente modificarCliente) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void eliminarCliente(Cliente eliminarCliente) throws FileNotFoundException, IOException {
+		// TODO Auto-generated method stub
 		
 	}
 	
