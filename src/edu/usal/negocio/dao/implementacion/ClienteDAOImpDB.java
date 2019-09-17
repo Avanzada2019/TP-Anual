@@ -46,9 +46,9 @@ public class ClienteDAOImpDB implements ClienteDAO {
 		try{
 			con = getConnection();
 			s = con.createStatement();
-			rsCliente = s.executeQuery("SELECT * FROM Clientes");
-			psPasaporte = con.prepareStatement("SELECT * FROM Pasaportes WHERE numero_pasaporte = ?");
-			psPasajeroFrecuente = con.prepareStatement("SELECT * FROM PasajerosFrecuentes WHERE numero = ?");
+			rsCliente = s.executeQuery("SELECT * FROM cliente");
+			psPasaporte = con.prepareStatement("SELECT * FROM pasaporte WHERE nro_pasaporte = ?");
+			psPasajeroFrecuente = con.prepareStatement("SELECT * FROM pasajero_frecuente WHERE numero = ?");
 			
 			List<Cliente> clientes = new ArrayList<Cliente>();
 			
@@ -68,35 +68,35 @@ public class ClienteDAOImpDB implements ClienteDAO {
 				cliente.setTelefono(telefono);
 				
 				Direccion direccion = new Direccion();
-				direccion.setCalle(rsCliente.getString("direccion_calle"));
-				direccion.setAltura(rsCliente.getString("direccion_altura"));
-				direccion.setCodigoPostal(rsCliente.getString("direccion_codigo_postal"));
-				direccion.setCiudad(rsCliente.getString("direccion_ciudad"));
+				direccion.setCalle(rsCliente.getString("calle"));
+				direccion.setAltura(rsCliente.getString("altura"));
+				direccion.setCodigoPostal(rsCliente.getString("codigo_postal"));
+				direccion.setCiudad(rsCliente.getString("ciudad"));
 				
 				Pais paisDireccion = new Pais();
-				paisDireccion.setNombre(rsCliente.getString("pais_id"));
+				paisDireccion.setNombre(rsCliente.getString("id_pais"));
 				direccion.setPais(paisDireccion);
 
 				Provincia provincia = new Provincia();
-				provincia.setNombre(rsCliente.getString("provincia_id"));
+				provincia.setNombre(rsCliente.getString("id_provincia"));
 				direccion.setProvincia(provincia);
 				
 				cliente.setDireccion(direccion);
 				
-				psPasaporte.setString(1, rsCliente.getString("pasaporte_id"));
+				psPasaporte.setString(1, rsCliente.getString("id_pasaporte"));
 				rsPasaporte = psPasaporte.executeQuery();
 				if(rsPasaporte.next()) {
 					Pasaporte pasaporte = new Pasaporte ();
-					pasaporte.setNumeroPasaporte(rsPasaporte.getString("numero_pasaporte"));
+					pasaporte.setNumeroPasaporte(rsPasaporte.getString("nro_pasaporte"));
 					pasaporte.setAutoridadEmision(rsPasaporte.getString("autoridad_emision"));
 					pasaporte.setFechaemision(rsPasaporte.getDate("fecha_emision"));
 					pasaporte.setFechavencimiento(rsPasaporte.getDate("fecha_vencimiento"));
 					Pais paisPasaporte = new Pais();
-					paisPasaporte.setNombre(rsPasaporte.getString("pais_id"));
+					paisPasaporte.setNombre(rsPasaporte.getString("id_pais"));
 					cliente.setPasaporte(pasaporte);
 				}
 
-				psPasajeroFrecuente.setString(1, rsCliente.getString("pasajero_frecuente_id"));
+				psPasajeroFrecuente.setString(1, rsCliente.getString("id_pasajero_frecuente"));
 				rsPasajeroFrecuente = psPasajeroFrecuente.executeQuery();
 				if(rsPasajeroFrecuente.next()) {
 					PasajeroFrecuente pf = new PasajeroFrecuente();
@@ -104,7 +104,7 @@ public class ClienteDAOImpDB implements ClienteDAO {
 					pf.setCategoria(rsPasajeroFrecuente.getString("categoria"));
 					
 					LineaAerea aerolinea = new LineaAerea();
-					aerolinea.setNombreAerolinea(rsPasajeroFrecuente.getString("aerolinea_id"));
+					aerolinea.setNombreAerolinea(rsPasajeroFrecuente.getString("id_aerolinea"));
 					pf.setAerolinea(aerolinea);
 					cliente.setPasajerofrecuente(pf);
 				}
@@ -151,17 +151,18 @@ public class ClienteDAOImpDB implements ClienteDAO {
 		ResultSet rsPasajeroFrecuente = null;
 		try{
 			con = getConnection();
-			psCliente = con.prepareStatement("SELECT * FROM Clientes WHERE dni = ?");
-			psPasaporte = con.prepareStatement("SELECT * FROM Pasaportes WHERE numero_pasaporte = ?");
-			psPasajeroFrecuente = con.prepareStatement("SELECT * FROM PasajerosFrecuentes WHERE numero = ?");
+			psCliente = con.prepareStatement("SELECT * FROM cliente WHERE dni = ?");
+			psPasaporte = con.prepareStatement("SELECT * FROM pasaporte WHERE nro_pasaporte = ?");
+			psPasajeroFrecuente = con.prepareStatement("SELECT * FROM pasajerofrecuente WHERE numero = ?");
 			
 			Cliente cliente = new Cliente();
 			
-			psCliente.setString(1, rsCliente.getString("DNI"));
+			psCliente.setString(1, rsCliente.getString("dni"));
 			rsCliente = psCliente.executeQuery();
 			
 			rsCliente.next();
-			cliente.setNombre(rsCliente.getString("nombre_apellido"));
+			cliente.setNombre(rsCliente.getString("nombre"));
+			cliente.setApellido(rsCliente.getString("apellido"));
 			cliente.setDNI(rsCliente.getString("dni"));
 			cliente.setCUIT_CUIL(rsCliente.getString("cuit"));
 			cliente.setFechanac(rsCliente.getDate("fecha_nacimiento"));
@@ -174,42 +175,42 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			cliente.setTelefono(telefono);
 				
 			Direccion direccion = new Direccion();
-			direccion.setCalle(rsCliente.getString("direccion_calle"));
-			direccion.setAltura(rsCliente.getString("direccion_altura"));
-			direccion.setCodigoPostal(rsCliente.getString("direccion_codigo_postal"));
-			direccion.setCiudad(rsCliente.getString("direccion_ciudad"));
+			direccion.setCalle(rsCliente.getString("calle"));
+			direccion.setAltura(rsCliente.getString("altura"));
+			direccion.setCodigoPostal(rsCliente.getString("codigo_postal"));
+			direccion.setCiudad(rsCliente.getString("ciudad"));
 				
 			Pais paisDireccion = new Pais();
-			paisDireccion.setNombre(rsCliente.getString("pais_id"));
+			paisDireccion.setNombre(rsCliente.getString("id_pais"));
 			direccion.setPais(paisDireccion);
 
 			Provincia provincia = new Provincia();
-			provincia.setNombre(rsCliente.getString("provincia_id"));
+			provincia.setNombre(rsCliente.getString("id_provincia"));
 			direccion.setProvincia(provincia);
 				
 			cliente.setDireccion(direccion);
 				
-			psPasaporte.setString(1, rsCliente.getString("pasaporte_id"));
+			psPasaporte.setString(1, rsCliente.getString("id_pasaporte"));
 			rsPasaporte = psPasaporte.executeQuery();
 			if(rsPasaporte.next()) {
 				Pasaporte pasaporte = new Pasaporte ();
-				pasaporte.setNumeroPasaporte(rsPasaporte.getString("numero_pasaporte"));
+				pasaporte.setNumeroPasaporte(rsPasaporte.getString("nro_pasaporte"));
 				pasaporte.setAutoridadEmision(rsPasaporte.getString("autoridad_emision"));
 				pasaporte.setFechaemision(rsPasaporte.getDate("fecha_emision"));
 				pasaporte.setFechavencimiento(rsPasaporte.getDate("fecha_vencimiento"));
 				Pais paisPasaporte = new Pais();
-				paisPasaporte.setNombre(rsPasaporte.getString("pais_id"));
+				paisPasaporte.setNombre(rsPasaporte.getString("id_pais"));
 				cliente.setPasaporte(pasaporte);
 			}
 
-			psPasajeroFrecuente.setString(1, rsCliente.getString("pasajero_frecuente_id"));
+			psPasajeroFrecuente.setString(1, rsCliente.getString("id_pasajero_frecuente"));
 			rsPasajeroFrecuente = psPasajeroFrecuente.executeQuery();
 			if(rsPasajeroFrecuente.next()) {
 				PasajeroFrecuente pf = new PasajeroFrecuente();
 				pf.setNumero(rsPasajeroFrecuente.getString("numero"));
 				pf.setCategoria(rsPasajeroFrecuente.getString("categoria"));
 				LineaAerea aerolinea = new LineaAerea();
-				aerolinea.setNombreAerolinea(rsPasajeroFrecuente.getString("aerolinea_id"));
+				aerolinea.setNombreAerolinea(rsPasajeroFrecuente.getString("id_aerolinea"));
 				pf.setAerolinea(aerolinea);
 				cliente.setPasajerofrecuente(pf);
 			}
@@ -253,7 +254,7 @@ public class ClienteDAOImpDB implements ClienteDAO {
 		try{
 			con = getConnection();
 			///ANTES INSERTAR PASAPORTE!!!
-			psPasaporte= con.prepareStatement("INSERT INTO Pasaportes (numero_pasaporte, autoridad_emision, fecha_emision, fecha_vencimiento, pais_id) VALUES (?, ?, ?, ?, ?)");
+			psPasaporte= con.prepareStatement("INSERT INTO pasaporte (nro_pasaporte, autoridad_emision, fecha_emision, fecha_vencimiento, id_pais) VALUES (?, ?, ?, ?, ?)");
 			psPasaporte.setString(1, Cliente.getPasaporte().getNumeroPasaporte());
 			psPasaporte.setString(2, Cliente.getPasaporte().getAutoridadEmision());
 			java.sql.Date sql1 = new  java.sql.Date(Cliente.getPasaporte().getFechaemision().getTime());
@@ -266,7 +267,7 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			System.out.println("Filas afectadas Pasaporte: " + filas);
 			
 			
-			psCliente=con.prepareStatement("INSERT INTO dbo.cliente (dni, nombre, apellido, pasaporte_id, cuit, fecha_nacimiento, email, numero_personal, numero_celular, numero_laboral, pasajero_frecuente_id, direccion_calle, direccion_altura, direccion_codigo_postal, provincia_id, pais_id, direccion_ciudad)"+
+			psCliente=con.prepareStatement("INSERT INTO cliente (dni, nombre, apellido, id_pasaporte, cuit_cuil, fecha_nacimiento, email, personal, celular, laboral, id_pasajero_frecuente, calle, altura, codigo_postal, id_provincia, id_pais, ciudad)"+
 			"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		
 			
@@ -322,7 +323,7 @@ PIDE QUE TODOS LOS ATRIBUTOS SEAN ESTATICOS-------------------------------------
 		PreparedStatement ps = null;
 		try{
 			con = getConnection();
-			ps=con.prepareStatement("UPDATE dbo.cliente SET nombre_apellido = ?, cuit = ?, fecha_nacimiento = ?, email = ?, numero_personal = ?, numero_celular = ?, numero_laboral = ?, direccion_calle = ?, direccion_altura = ?, direccion_codigo_postal = ?, provincia_id = ?, pais_id = ?, direccion_ciudad = ? WHERE dni = ?");
+			ps=con.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, cuit_cuil = ?, fecha_nacimiento = ?, email = ?, personal = ?, celular = ?, laboral = ?, calle = ?, altura = ?, codigo_postal = ?, id_provincia = ?, id_pais = ?, ciudad = ? WHERE dni = ?");
 			
 			
 /*--------------------------------------------------------------------------------------------------------------------------------------			
@@ -375,12 +376,12 @@ PIDE TODOS LOS ATRIBUTOS ESTATICOS ---------------------------------------------
 		int filas = 0;
 		try{
 			con = getConnection();
-			psCliente=con.prepareStatement("DELETE FROM Clientes WHERE dni = ?");
+			psCliente=con.prepareStatement("DELETE FROM cliente WHERE dni = ?");
 			psCliente.setString(1, Cliente.getDNI()); 
 			filas = psCliente.executeUpdate();
 			System.out.println("Filas Clientes afectadas: " + filas);
 			
-			psPasaporte=con.prepareStatement("DELETE FROM Pasaportes WHERE numero_pasaporte = ?");
+			psPasaporte=con.prepareStatement("DELETE FROM pasaporte WHERE nro_pasaporte = ?");
 			psPasaporte.setString(1, Cliente.getPasaporte().getNumeroPasaporte());
 			filas = psPasaporte.executeUpdate();
 			System.out.println("Filas Pasaportes afectadas: " + filas);
