@@ -1,6 +1,5 @@
 package edu.usal.negocio.dominio;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Cliente {
@@ -10,8 +9,7 @@ public class Cliente {
 	private static String DNI;
 	private static Pasaporte pasaporte;
 	private String CUIT_CUIL;
-	private Calendar FechaDeNacimiento = Calendar.getInstance();
-	java.util.Date fechanac = FechaDeNacimiento.getTime();
+	private Date FechaDeNacimiento;
 	private String Email;
 	private Telefono telefono;
 	private PasajeroFrecuente pasajerofrecuente;
@@ -20,7 +18,7 @@ public class Cliente {
 	public Cliente() {}
 	
 	public Cliente(String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
-			Calendar fechaDeNacimiento, Date fechanac, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
+			Calendar fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
 		//super();
 		this.Nombre = nombre;
@@ -29,7 +27,6 @@ public class Cliente {
 		this.pasaporte = pasaporte;
 		CUIT_CUIL = cUIT_CUIL;
 		FechaDeNacimiento = fechaDeNacimiento;
-		fechanac = fechanac;
 		Email = email;
 		this.telefono = telefono;
 		this.pasajerofrecuente = pasajerofrecuente;
@@ -67,18 +64,11 @@ public class Cliente {
 	public void setCUIT_CUIL(String cUIT_CUIL) {
 		CUIT_CUIL = cUIT_CUIL;
 	}
-	public Calendar getFechaDeNacimiento() {
+	public Date getFechaDeNacimiento() {
 		return FechaDeNacimiento;
 	}
-	public void setFechaDeNacimiento(Calendar fechaDeNacimiento) {
+	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
 		FechaDeNacimiento = fechaDeNacimiento;
-	}
-	public Date getFechanac() {
-		return fechanac;
-	}
-
-	public void setFechanac(Date fechanac) {
-		this.fechanac = fechanac;
 	}
 	public String getEmail() {
 		return Email;

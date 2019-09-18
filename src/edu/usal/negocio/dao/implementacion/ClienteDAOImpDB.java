@@ -3,6 +3,7 @@ package edu.usal.negocio.dao.implementacion;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,12 +54,15 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			List<Cliente> clientes = new ArrayList<Cliente>();
 			
 			while(rsCliente.next()) {
+				
 				Cliente cliente = new Cliente();
 				cliente.setNombre(rsCliente.getString("nombre"));
 				cliente.setApellido(rsCliente.getString("apellido"));
 				cliente.setDNI(rsCliente.getString("dni"));
 				cliente.setCUIT_CUIL(rsCliente.getString("cuit"));
-				cliente.setFechanac(rsCliente.getDate("fecha_nacimiento"));
+				Date fechaNacimiento = rsCliente.getDate("fecha_nacimiento");
+				cliente.setFechaDeNacimiento(new java.util.Date(fechaNacimiento.getTime()));
+		//		cliente.setFechaDeNacimiento(rsCliente.getDate("fecha_nacimiento"));
 				cliente.setEmail(rsCliente.getString("email"));
 				
 				Telefono telefono = new Telefono();
@@ -86,11 +90,15 @@ public class ClienteDAOImpDB implements ClienteDAO {
 				psPasaporte.setString(1, rsCliente.getString("id_pasaporte"));
 				rsPasaporte = psPasaporte.executeQuery();
 				if(rsPasaporte.next()) {
+					
 					Pasaporte pasaporte = new Pasaporte ();
 					pasaporte.setNumeroPasaporte(rsPasaporte.getString("nro_pasaporte"));
 					pasaporte.setAutoridadEmision(rsPasaporte.getString("autoridad_emision"));
-					pasaporte.setFechaemision(rsPasaporte.getDate("fecha_emision"));
-					pasaporte.setFechavencimiento(rsPasaporte.getDate("fecha_vencimiento"));
+					Date fechaEmision = rsCliente.getDate("fecha_nacimiento");
+					pasaporte.setFechaEmision(new java.util.Date(fechaEmision.getTime()));
+					Date fechaVencimiento = rsCliente.getDate("fecha_nacimiento");
+					pasaporte.setFechaVencimiento(new java.util.Date(fechaVencimiento.getTime()));
+					
 					Pais paisPasaporte = new Pais();
 					paisPasaporte.setNombre(rsPasaporte.getString("id_pais"));
 					cliente.setPasaporte(pasaporte);
@@ -165,7 +173,8 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			cliente.setApellido(rsCliente.getString("apellido"));
 			cliente.setDNI(rsCliente.getString("dni"));
 			cliente.setCUIT_CUIL(rsCliente.getString("cuit"));
-			cliente.setFechanac(rsCliente.getDate("fecha_nacimiento"));
+			Date fecha = rsCliente.getDate("fecha_nacimiento");
+			cliente.setFechaDeNacimiento(new java.util.Date(fecha.getTime()));
 			cliente.setEmail(rsCliente.getString("email"));
 				
 			Telefono telefono = new Telefono();
@@ -193,11 +202,15 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			psPasaporte.setString(1, rsCliente.getString("id_pasaporte"));
 			rsPasaporte = psPasaporte.executeQuery();
 			if(rsPasaporte.next()) {
+				
 				Pasaporte pasaporte = new Pasaporte ();
 				pasaporte.setNumeroPasaporte(rsPasaporte.getString("nro_pasaporte"));
 				pasaporte.setAutoridadEmision(rsPasaporte.getString("autoridad_emision"));
-				pasaporte.setFechaemision(rsPasaporte.getDate("fecha_emision"));
-				pasaporte.setFechavencimiento(rsPasaporte.getDate("fecha_vencimiento"));
+				Date fechaEmision = rsCliente.getDate("fecha_nacimiento");
+				pasaporte.setFechaEmision(new java.util.Date(fechaEmision.getTime()));	
+				Date fechaVencimiento = rsCliente.getDate("fecha_nacimiento");
+				pasaporte.setFechaEmision(new java.util.Date(fechaVencimiento.getTime()));
+				
 				Pais paisPasaporte = new Pais();
 				paisPasaporte.setNombre(rsPasaporte.getString("id_pais"));
 				cliente.setPasaporte(pasaporte);
@@ -255,13 +268,13 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			con = getConnection();
 			///ANTES INSERTAR PASAPORTE!!!
 			psPasaporte= con.prepareStatement("INSERT INTO pasaporte (nro_pasaporte, autoridad_emision, fecha_emision, fecha_vencimiento, id_pais) VALUES (?, ?, ?, ?, ?)");
-			psPasaporte.setString(1, Cliente.getPasaporte().getNumeroPasaporte());
-			psPasaporte.setString(2, Cliente.getPasaporte().getAutoridadEmision());
-			java.sql.Date sql1 = new  java.sql.Date(Cliente.getPasaporte().getFechaemision().getTime());
+			psPasaporte.setString(1, registrarCliente.getPasaporte().getNumeroPasaporte());
+			psPasaporte.setString(2, registrarCliente.getPasaporte().getAutoridadEmision());
+			java.sql.Date sql1 = new  java.sql.Date(registrarCliente.getPasaporte().getFechaEmision().getTime());
 			psPasaporte.setDate(3, sql1);
-			java.sql.Date sql2 = new  java.sql.Date(Cliente.getPasaporte().getFechavencimiento().getTime());
+			java.sql.Date sql2 = new  java.sql.Date(registrarCliente.getPasaporte().getFechaVencimiento().getTime());
 			psPasaporte.setDate(4, sql2);
-			psPasaporte.setString(5, Cliente.getPasaporte().getPaisEmision().getId());
+			psPasaporte.setString(5, registrarCliente.getPasaporte().getPaisEmision().getId());
 			
 			filas = psPasaporte.executeUpdate();
 			System.out.println("Filas afectadas Pasaporte: " + filas);
@@ -271,27 +284,27 @@ public class ClienteDAOImpDB implements ClienteDAO {
 			"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		
 			
-/*------------------------------------------------------------------------------------------------------------------------------------------------------
-			psCliente.setString(1,Cliente.getDNI());
-			psCliente.setString(2,Cliente.getNombre());
-			psCliente.setString(3,Cliente.getApellido());
-			psCliente.setString(4,Cliente.getPasaporte().getNumeroPasaporte());
-			psCliente.setString(5,Cliente.getCUIT_CUIL());
-			java.sql.Date sql3 = new  java.sql.Date(cliente.getFechaDeNacimiento().getTime());
+
+			psCliente.setString(1,registrarCliente.getDNI());
+			psCliente.setString(2,registrarCliente.getNombre());
+			psCliente.setString(3,registrarCliente.getApellido());
+			psCliente.setString(4,registrarCliente.getPasaporte().getNumeroPasaporte());
+			psCliente.setString(5,registrarCliente.getCUIT_CUIL());
+			java.sql.Date sql3 = new  java.sql.Date(registrarCliente.getFechaDeNacimiento().getTime());
 			psCliente.setDate(6, sql3);
-			psCliente.setString(7, Cliente.getEmail());
-			psCliente.setString(8, Cliente.getTelefono().getNumeroPersonal());
-			psCliente.setString(9, Cliente.getTelefono().getNumeroCelular());
-			psCliente.setString(10, Cliente.getTelefono().getNumeroLaboral());
-			psCliente.setString(11, Cliente.getPasajeroFrecuente().getNumero());
-			psCliente.setString(12, Cliente.getDireccion().getCalle());
-			psCliente.setString(13, Cliente.getDireccion().getAltura());
-			psCliente.setString(14, Cliente.getDireccion().getCodigoPostal());
-			psCliente.setString(15, Cliente.getDireccion().getProvincia().getId());
-			psCliente.setString(16, Cliente.getDireccion().getPais().getId());
-			psCliente.setString(17, Cliente.getDireccion().getCiudad());
+			psCliente.setString(7, registrarCliente.getEmail());
+			psCliente.setString(8, registrarCliente.getTelefono().getNumeroPersonal());
+			psCliente.setString(9, registrarCliente.getTelefono().getNumeroCelular());
+			psCliente.setString(10, registrarCliente.getTelefono().getNumeroLaboral());
+			psCliente.setString(11, registrarCliente.getPasajerofrecuente().getNumero());
+			psCliente.setString(12, registrarCliente.getDireccion().getCalle());
+			psCliente.setString(13, registrarCliente.getDireccion().getAltura());
+			psCliente.setString(14, registrarCliente.getDireccion().getCodigoPostal());
+			psCliente.setLong(15, registrarCliente.getDireccion().getProvincia().getId());
+			psCliente.setString(16, registrarCliente.getDireccion().getPais().getId());
+			psCliente.setString(17, registrarCliente.getDireccion().getCiudad());
 			
-PIDE QUE TODOS LOS ATRIBUTOS SEAN ESTATICOS-----------------------------------------------------------------------------------------------------------*/	
+	
 			
 		
 			filas = psCliente.executeUpdate();
@@ -325,26 +338,25 @@ PIDE QUE TODOS LOS ATRIBUTOS SEAN ESTATICOS-------------------------------------
 			con = getConnection();
 			ps=con.prepareStatement("UPDATE cliente SET nombre = ?, apellido = ?, cuit_cuil = ?, fecha_nacimiento = ?, email = ?, personal = ?, celular = ?, laboral = ?, calle = ?, altura = ?, codigo_postal = ?, id_provincia = ?, id_pais = ?, ciudad = ? WHERE dni = ?");
 			
-			
-/*--------------------------------------------------------------------------------------------------------------------------------------			
-			ps.setString(1,	Cliente.getNombre());
-			ps.setString(2,	Cliente.getApellido());
-			ps.setString(3,	Cliente.getCUIT_CUIL());
-			java.sql.Date sql1 = new  java.sql.Date(Cliente.getFechanac().getTime());
-			ps.setDate(4,	sql1);
-			ps.setString(5, Cliente.getEmail());
-			ps.setString(6, Cliente.getTelefono().getNumeroPersonal());
-			ps.setString(7, Cliente.getTelefono().getNumeroCelular());
-			ps.setString(8, Cliente.getTelefono().getNumeroLaboral());
-			ps.setString(9, Cliente.getDireccion().getCalle());
-			ps.setString(10, Cliente.getDireccion().getAltura());
-			ps.setString(11, Cliente.getDireccion().getCodigoPostal());
-			ps.setString(12, Cliente.getDireccion().getProvincia().getId());
-			ps.setString(13, Cliente.getDireccion().getPais().getId());
-			ps.setString(14, Cliente.getDireccion().getCiudad());
-			ps.setString(15,Cliente.getDNI());
 		
-PIDE TODOS LOS ATRIBUTOS ESTATICOS -----------------------------------------------------------------------------------------------------*/			
+			ps.setString(1,	modificarCliente.getNombre());
+			ps.setString(2,	modificarCliente.getApellido());
+			ps.setString(3,	modificarCliente.getCUIT_CUIL());
+			java.sql.Date sql1 = new  java.sql.Date(modificarCliente.getFechaDeNacimiento().getTime());
+			ps.setDate(4,	sql1);
+			ps.setString(5, modificarCliente.getEmail());
+			ps.setString(6, modificarCliente.getTelefono().getNumeroPersonal());
+			ps.setString(7, modificarCliente.getTelefono().getNumeroCelular());
+			ps.setString(8, modificarCliente.getTelefono().getNumeroLaboral());
+			ps.setString(9, modificarCliente.getDireccion().getCalle());
+			ps.setString(10, modificarCliente.getDireccion().getAltura());
+			ps.setString(11, modificarCliente.getDireccion().getCodigoPostal());
+			ps.setLong(12, modificarCliente.getDireccion().getProvincia().getId());
+			ps.setString(13, modificarCliente.getDireccion().getPais().getId());
+			ps.setString(14, modificarCliente.getDireccion().getCiudad());
+			ps.setString(15, modificarCliente.getDNI());
+		
+	
 			int filas = ps.executeUpdate();
 			System.out.println("Filas afectadas: " + filas);
 		}catch(SQLException e){
@@ -377,12 +389,12 @@ PIDE TODOS LOS ATRIBUTOS ESTATICOS ---------------------------------------------
 		try{
 			con = getConnection();
 			psCliente=con.prepareStatement("DELETE FROM cliente WHERE dni = ?");
-			psCliente.setString(1, Cliente.getDNI()); 
+			psCliente.setString(1, eliminarCliente.getDNI()); 
 			filas = psCliente.executeUpdate();
 			System.out.println("Filas Clientes afectadas: " + filas);
 			
 			psPasaporte=con.prepareStatement("DELETE FROM pasaporte WHERE nro_pasaporte = ?");
-			psPasaporte.setString(1, Cliente.getPasaporte().getNumeroPasaporte());
+			psPasaporte.setString(1, eliminarCliente.getPasaporte().getNumeroPasaporte());
 			filas = psPasaporte.executeUpdate();
 			System.out.println("Filas Pasaportes afectadas: " + filas);
 			

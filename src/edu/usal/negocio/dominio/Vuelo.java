@@ -1,7 +1,7 @@
 package edu.usal.negocio.dominio;
 
 import java.awt.List;
-import java.util.Calendar;
+import java.util.Date;
 
 public class Vuelo {
 
@@ -9,14 +9,14 @@ public class Vuelo {
 	private int CantidadAsientos;
 	private Aeropuerto AeropuertoSalida;
 	private Aeropuerto AeropuertoLlegada;
-	private Calendar FechaSalida;
-	private Calendar FechaLlegada;
+	private Date FechaSalida;
+	private Date FechaLlegada;
 	private String TiempoVuelo;
 	
 	public Vuelo() {}
 	
 	public Vuelo(String numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
-			Calendar fechaSalida, Calendar fechaLlegada, String tiempoVuelo) {
+			Date fechaSalida, Date fechaLlegada, String tiempoVuelo) {
 		super();
 		NumeroVuelo = numeroVuelo;
 		CantidadAsientos = cantidadAsientos;
@@ -50,16 +50,16 @@ public class Vuelo {
 	public void setAeropuertoLlegada(Aeropuerto aeropuertoLlegada) {
 		AeropuertoLlegada = aeropuertoLlegada;
 	}
-	public Calendar getFechaSalida() {
+	public Date getFechaSalida() {
 		return FechaSalida;
 	}
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(Date fechaSalida) {
 		FechaSalida = fechaSalida;
 	}
-	public Calendar getFechaLlegada() {
+	public Date getFechaLlegada() {
 		return FechaLlegada;
 	}
-	public void setFechaLlegada(Calendar fechaLlegada) {
+	public void setFechaLlegada(Date fechaLlegada) {
 		FechaLlegada = fechaLlegada;
 	}
 	public String getTiempoVuelo() {

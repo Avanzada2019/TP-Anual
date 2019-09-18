@@ -1,6 +1,6 @@
 package edu.usal.negocio.dominio;
 
-import java.util.Calendar;
+import java.util.Date;
  
 public class Venta {
 	//Creado borrador: necesitamos un id que se cree automáticamente
@@ -9,12 +9,12 @@ public class Venta {
 	private Cliente cliente;
 	private Vuelo vuelo;
 	private LineaAerea Aerolinea;
-	private Calendar FechaVenta;
+	private Date FechaVenta;
 	private String FormaPago;
 	 
 	public Venta() {}
 	
-	public Venta(long idVenta, Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Calendar fechaVenta, String formaPago) {
+	public Venta(long idVenta, Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Date fechaVenta, String formaPago) {
 		super();
 		idVenta = idVenta;
 		this.cliente = cliente;
@@ -49,10 +49,10 @@ public class Venta {
 	public void setAerolinea(LineaAerea aerolinea) {
 		Aerolinea = aerolinea;
 	}
-	public Calendar getFechaVenta() {
+	public Date getFechaVenta() {
 		return FechaVenta;
 	}
-	public void setFechaVenta(Calendar fechaVenta) {
+	public void setFechaVenta(Date fechaVenta) {
 		FechaVenta = fechaVenta;
 	}
 	public String getFormaPago() {

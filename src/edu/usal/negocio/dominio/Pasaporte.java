@@ -1,21 +1,19 @@
 package edu.usal.negocio.dominio;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Pasaporte {
 	
 	private String NumeroPasaporte;
 	private Pais PaisEmision;
 	private String AutoridadEmision;
-	private Calendar FechaEmision= Calendar.getInstance();
-	java.util.Date Fechaemision = FechaEmision.getTime();
-	private Calendar FechaVencimiento;
-	java.util.Date Fechavencimiento = FechaEmision.getTime();
-	
+	private Date FechaEmision;
+	private Date FechaVencimiento;
+
 	public Pasaporte() {}
 	
-	public Pasaporte(String numeroPasaporte, Pais paisEmision, String autoridadEmision, Calendar fechaEmision,
-			Calendar fechaVencimiento) {
+	public Pasaporte(String numeroPasaporte, Pais paisEmision, String autoridadEmision, Date fechaEmision,
+			Date fechaVencimiento) {
 		super();
 		NumeroPasaporte = numeroPasaporte;
 		PaisEmision = paisEmision;
@@ -41,35 +39,17 @@ public class Pasaporte {
 	public void setAutoridadEmision(String autoridadEmision) {
 		AutoridadEmision = autoridadEmision;
 	}
-	public Calendar getFechaEmision() {
+	public Date getFechaEmision() {
 		return FechaEmision;
 	}
-	public void setFechaEmision(Calendar fechaEmision) {
+	public void setFechaEmision(Date fechaEmision) {
 		FechaEmision = fechaEmision;
 	}
-	public Calendar getFechaVencimiento() {
+	public Date getFechaVencimiento() {
 		return FechaVencimiento;
 	}
-	public void setFechaVencimiento(Calendar fechaVencimiento) {
+	public void setFechaVencimiento(Date fechaVencimiento) {
 		FechaVencimiento = fechaVencimiento;
 	}
-
-	public java.util.Date getFechaemision() {
-		return Fechaemision;
-	}
-
-	public void setFechaemision(java.util.Date fechaemision) {
-		Fechaemision = fechaemision;
-	}
-
-	public java.util.Date getFechavencimiento() {
-		return Fechavencimiento;
-	}
-
-	public void setFechavencimiento(java.util.Date fechavencimiento) {
-		Fechavencimiento = fechavencimiento;
-	}
-	
-	
 
 }
