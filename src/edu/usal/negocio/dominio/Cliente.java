@@ -18,7 +18,7 @@ public class Cliente {
 	public Cliente() {}
 	
 	public Cliente(String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
-			Calendar fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
+			Date fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
 		//super();
 		this.Nombre = nombre;
