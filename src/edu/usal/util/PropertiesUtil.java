@@ -80,10 +80,6 @@ public class PropertiesUtil {
 	}
 	
 	
-	/*
-	public static String getPropertyAeropuerto()
-	{
-	return properties.getProperty("pathAeropuerto");
-	}*/
+
 
 }

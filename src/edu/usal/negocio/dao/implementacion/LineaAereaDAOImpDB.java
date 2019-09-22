@@ -1,5 +1,9 @@
 package edu.usal.negocio.dao.implementacion;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,8 +18,9 @@ import edu.usal.negocio.dominio.Alianza;
 import edu.usal.negocio.dominio.LineaAerea;
 import edu.usal.util.PropertiesUtil;
 
-public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
+public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 
+	
 	private static Connection getConnection() throws SQLException {
 		
 		Connection DBCon = null;
@@ -31,6 +36,8 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		
 	} // Cierre de getConnection 
 	
+	
+	@Override
 	public List<LineaAerea> obtenerLineaAerea() {
 		
 		Connection DBCon = null;
@@ -85,7 +92,7 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 	} // Cierre del metodo obtenerLineaAerea
 	
 	
-	
+	@Override
 	public void altaLineaAerea(LineaAerea lineaaerea) {
 		
 		Connection DBCon = null;
@@ -120,7 +127,7 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 	} // Cierre AltaLineaAerea
 	
 	
-	
+	@Override
 	public void bajaLineaAerea(LineaAerea BajarLineaAerea) {
 		Connection DBCon = null;
 		PreparedStatement psLineaAerea = null;
@@ -153,6 +160,47 @@ public abstract class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		}  // Cierre de finally
 		
 		
-	}
+	}  // Cierre de BajarLineaAerea
+	
+	
+	
+	@Override
+	public void modificarLineaAerea(LineaAerea modificarLineaAerea) throws FileNotFoundException, IOException {
+				
+		Connection DBCon = null;
+		PreparedStatement psLineaAerea = null;
+		
+		try{
+			DBCon = getConnection();
+			psLineaAerea=DBCon.prepareStatement("UPDATE aerolineas SET codigo = ? WHERE nombre = ?");
+			
+			psLineaAerea.setString(1, modificarLineaAerea.getCodigo());
+			psLineaAerea.setString(2, modificarLineaAerea.getNombreAerolinea());
+			int filas = psLineaAerea.executeUpdate();
+			System.out.println("Filas afectadas: " + filas);
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(!psLineaAerea.isClosed()){
+					psLineaAerea.close();
+				}
+				if(!DBCon.isClosed()){
+					DBCon.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+		
+		
+		
+	
+	}  // Cierre de modificarLineaAerea
+	
 	
 }

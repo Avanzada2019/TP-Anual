@@ -13,9 +13,7 @@ public interface LineaAereaDAO
 	public void altaLineaAerea(LineaAerea AltalineaAerea) throws FileNotFoundException, IOException;
 	
 	public void modificarLineaAerea(LineaAerea ModificarlineaAerea) throws FileNotFoundException, IOException;
-	
-	//public void grabarLineaAerea(LineaAerea GrabarLineaAerea);
-	
+		
 	public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException;
 	
 	
