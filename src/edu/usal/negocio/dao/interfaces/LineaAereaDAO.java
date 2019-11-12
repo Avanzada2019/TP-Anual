@@ -8,7 +8,7 @@ import edu.usal.negocio.dominio.LineaAerea;
 
 public interface LineaAereaDAO
 {
-    public List<LineaAerea> obtenerLineaAerea();  // Carga las lineas aereas en memoria desde un archivo
+//    public List<LineaAerea> obtenerLineaAerea();  // Carga las lineas aereas en memoria desde un archivo
 	
 	public void altaLineaAerea(LineaAerea AltalineaAerea) throws FileNotFoundException, IOException;
 	
@@ -16,5 +16,6 @@ public interface LineaAereaDAO
 		
 	public void bajaLineaAerea(LineaAerea BajarLineaAerea) throws FileNotFoundException, IOException;
 	
+	public LineaAerea obtenerLineaAerea();
 	
 }

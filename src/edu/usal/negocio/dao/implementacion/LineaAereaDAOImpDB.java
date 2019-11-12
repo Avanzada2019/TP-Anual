@@ -14,29 +14,91 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.LineaAereaDAO;
+import edu.usal.negocio.dominio.Aeropuerto;
 import edu.usal.negocio.dominio.Alianza;
 import edu.usal.negocio.dominio.LineaAerea;
+import edu.usal.negocio.dominio.Vuelo;
 import edu.usal.util.PropertiesUtil;
 
 public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 
-	/*
-	private static Connection getConnection() throws SQLException {
+	public List<LineaAerea> obtenerLineasAereas() throws SQLException{
+		ResultSet rsAerolinea = null;
 		
-		Connection DBCon = null;
+		ArrayList<LineaAerea> aerolinea = new ArrayList<LineaAerea>();
 		
-		try {
-			 Class.forName(PropertiesUtil.getSqlDriver());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		try (Connection conexion = Connect.getConnection();
+	         Statement statement = conexion.createStatement();) {
 		
-		DBCon = DriverManager.getConnection(PropertiesUtil.getSqlPath(), PropertiesUtil.getSqlUser(), PropertiesUtil.getSqlPwd());
-		return DBCon;
-		
-	} // Cierre de getConnection 
+			String selectSql = ("SELECT AER.id_aerolinea as id_aerolinea, AER.nombre_aerolinea as nombre_aerolinea, AER.alianza as alianza " + 
+								"FROM dbo.lineasAereas AER");
+			rsAerolinea = statement.executeQuery(selectSql);
+						
+			while (rsAerolinea.next()) {
+				
+				LineaAerea oAerolinea = new LineaAerea();
+				oAerolinea.setNombreAerolinea(rsAerolinea.getString("nombre_aerolinea"));
+				
+				Alianza oAlianza = new Alianza();
+				oAlianza.setNombre("alianza");
+				oAerolinea.setAlianza(oAlianza);
+				 
+				aerolinea.add(oAerolinea); 		
+			}
+		 }
+	     catch (SQLException e) {
+	    	 e.printStackTrace();
+	     }
+		return aerolinea;
+	}
 	
-	*/
+	@Override
+	public LineaAerea obtenerLineaAerea() {
+		
+		Connection con = null;
+		PreparedStatement psLineaAerea = null;
+		ResultSet rsLineaAerea = null;
+		try{
+			con = Connect.getConnection();
+			psLineaAerea = con.prepareStatement("SELECT AER.id_aerolinea as id_aerolinea, AER.nombre_aerolinea as nombre_aerolinea, AER.alianza as alianza " + 
+												"FROM dbo.lineasAereas as AER WHERE nombre_aerolinea = ?");
+			
+			psLineaAerea.setString(1, rsLineaAerea.getString("nombre_aerolinea"));
+			rsLineaAerea = psLineaAerea.executeQuery();
+			rsLineaAerea.next();
+			
+			LineaAerea aerolinea = new LineaAerea();
+			aerolinea.setIdLineaAerea(rsLineaAerea.getInt("id_aerolinea"));
+			aerolinea.setNombreAerolinea(rsLineaAerea.getString("nombre_aerolinea"));
+			
+			Alianza alianza = new Alianza();
+			alianza.setNombre(rsLineaAerea.getString("alianza"));
+			aerolinea.setAlianza(alianza);
+				
+			return aerolinea;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		finally{
+			try{
+				if(psLineaAerea != null && !psLineaAerea.isClosed()){
+					psLineaAerea.close();
+				}
+				if(!con.isClosed()){
+					con.close();
+				}
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}	
+			}
+	}
+	/*
 	@Override
 	public List<LineaAerea> obtenerLineaAerea() {
 		
@@ -90,7 +152,8 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		return null;
 		
 	} // Cierre del metodo obtenerLineaAerea
-	
+	*/
+
 	
 	@Override
 	public void altaLineaAerea(LineaAerea lineaaerea) {
@@ -135,7 +198,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		try {
 			
 			DBCon = Connect.getConnection();
-			psLineaAerea = DBCon.prepareStatement("DELETE FROM LineasAereas WHERE nombre_aerolinea");
+			psLineaAerea = DBCon.prepareStatement("DELETE FROM lineasAereas WHERE nombre_aerolinea = ?");
 			
 			psLineaAerea.setString(1,BajarLineaAerea.getNombreAerolinea());
 				
@@ -158,8 +221,6 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 				e.printStackTrace();
 			}
 		}  // Cierre de finally
-		
-		
 	}  // Cierre de BajarLineaAerea
 	
 	
@@ -169,14 +230,21 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 				
 		Connection DBCon = null;
 		PreparedStatement psLineaAerea = null;
-		
+//		ResultSet rsLineaAerea = null;
 		try{
 			DBCon = Connect.getConnection();
-			psLineaAerea=DBCon.prepareStatement("UPDATE aerolineas SET codigo = ? WHERE nombre = ?");
+			psLineaAerea=DBCon.prepareStatement("UPDATE lineasAereas SET nombre_aerolinea = ?, alianza = ? WHERE nombre_aerolinea = ?");
 			
-			psLineaAerea.setString(1, modificarLineaAerea.getCodigo());
-			psLineaAerea.setString(2, modificarLineaAerea.getNombreAerolinea());
+//			psLineaAerea.setString(1, modificarLineaAerea.getNombreAerolinea());
+//			rsLineaAerea = psLineaAerea.executeQuery();
+//			if(rsLineaAerea.next()) {
+				psLineaAerea.setString(1, modificarLineaAerea.getNombreAerolinea());
+				psLineaAerea.setString(2, modificarLineaAerea.getAlianza().getNombre());
+//			}
+//			psLineaAerea.setString(2, modificarLineaAerea.getAlianza().getNombre());
+			
 			int filas = psLineaAerea.executeUpdate();
+			
 			System.out.println("Filas afectadas: " + filas);
 			
 		}catch(SQLException e){
@@ -195,12 +263,6 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 				e.printStackTrace();
 			}
 		}
-	
-		
-		
-		
-	
 	}  // Cierre de modificarLineaAerea
-	
 	
 }
