@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Pasaporte {
 	
+	private int idPasaporte;
 	private String NumeroPasaporte;
 	private Pais PaisEmision;
 	private String AutoridadEmision;
@@ -12,15 +13,25 @@ public class Pasaporte {
 
 	public Pasaporte() {}
 	
-	public Pasaporte(String numeroPasaporte, Pais paisEmision, String autoridadEmision, Date fechaEmision,
+	public Pasaporte(int idPasaporte, String numeroPasaporte, Pais paisEmision, String autoridadEmision, Date fechaEmision,
 			Date fechaVencimiento) {
 		super();
+		this.idPasaporte = idPasaporte;
 		NumeroPasaporte = numeroPasaporte;
 		PaisEmision = paisEmision;
 		AutoridadEmision = autoridadEmision;
 		FechaEmision = fechaEmision;
 		FechaVencimiento = fechaVencimiento;
 	}
+	
+	public int getId_pasaporte() {
+		return idPasaporte;
+	}
+
+	public void setId_pasaporte(int idPasaporte) {
+		this.idPasaporte = idPasaporte;
+	}
+
 	public String getNumeroPasaporte() {
 		return NumeroPasaporte;
 	}

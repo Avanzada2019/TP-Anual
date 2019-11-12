@@ -1,27 +1,37 @@
 package edu.usal.negocio.dominio;
 
-import java.awt.List;
 
 public class PasajeroFrecuente {
 	
-	private List Alianza;
+	private int idPasajeroFrecuente;
+	private Alianza Alianza;
 	private LineaAerea Aerolinea;
 	private String Numero;
 	private String Categoria;
 	
 	public PasajeroFrecuente() {}
 	
-	public PasajeroFrecuente(List alianza, LineaAerea aerolinea, String numero, String categoria) {
+	public PasajeroFrecuente(int idPasajeroFrecuente, Alianza alianza, LineaAerea aerolinea, String numero, String categoria) {
 		super();
+		this.idPasajeroFrecuente = idPasajeroFrecuente;
 		Alianza = alianza;
 		Aerolinea = aerolinea;
 		Numero = numero;
 		Categoria = categoria;
 	}
-	public List getAlianza() {
+	
+	public int getId_pasajeroFrecuente() {
+		return idPasajeroFrecuente;
+	}
+
+	public void setId_pasajeroFrecuente(int idPasajeroFrecuente) {
+		this.idPasajeroFrecuente = idPasajeroFrecuente;
+	}
+
+	public Alianza getAlianza() {
 		return Alianza;
 	}
-	public void setAlianza(List alianza) {
+	public void setAlianza(Alianza alianza) {
 		Alianza = alianza;
 	}
 	public LineaAerea getAerolinea() {

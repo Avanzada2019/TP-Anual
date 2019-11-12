@@ -4,33 +4,28 @@ import java.util.Date;
  
 public class Venta {
 	//Creado borrador: necesitamos un id que se cree automáticamente
-	private long idVenta;
+	private int idVenta;
 	//
 	private Cliente cliente;
 	private Vuelo vuelo;
 	private LineaAerea Aerolinea;
 	private Date FechaVenta;
 	private String FormaPago;
+	private Aeropuerto Aeropuerto;
 	 
 	public Venta() {}
 	
-	public Venta(long idVenta, Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Date fechaVenta, String formaPago) {
+	public Venta(int idVenta, Cliente cliente, Vuelo vuelo, LineaAerea aerolinea, Date fechaVenta, String formaPago, Aeropuerto Aeropuerto) {
 		super();
-		idVenta = idVenta;
+		this.idVenta = idVenta;
 		this.cliente = cliente;
 		this.vuelo = vuelo;
 		Aerolinea = aerolinea;
 		FechaVenta = fechaVenta;
 		FormaPago = formaPago;
+		this.Aeropuerto = Aeropuerto;
 	}
-	// GET Y SET DE idVenta
-	public long getidVenta() {
-		return idVenta;
-	}
-	public void setidVenta(long idVenta) {
-		this.idVenta = idVenta;
-	}
-	//
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -61,5 +56,23 @@ public class Venta {
 	public void setFormaPago(String formaPago) {
 		FormaPago = formaPago;
 	}
+
+	public int getIdVenta() {
+		return idVenta;
+	}
+
+	public void setIdVenta(int idVenta) {
+		this.idVenta = idVenta;
+	}
+
+	public Aeropuerto getAeropuerto() {
+		return Aeropuerto;
+	}
+
+	public void setAeropuerto(Aeropuerto aeropuerto) {
+		Aeropuerto = aeropuerto;
+	}
+	
+	
 
 }

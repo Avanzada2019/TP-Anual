@@ -2,22 +2,22 @@ package edu.usal.negocio.dominio;
 
 public class Pais {
 
-	private String id;
+	private int idPais;
 	private String nombre;
 	
 	public Pais() {}
 	
 	public Pais(String id, String nombre) {
-		this.id = id;
+		this.idPais = idPais;
 		this.nombre = nombre;
 	}
 
-	public String getId() {
-		return id;
+	public int getId() {
+		return idPais;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId(int idPais) {
+		this.idPais = idPais;
 	}
 
 	public String getNombre() {

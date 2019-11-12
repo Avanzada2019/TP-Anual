@@ -1,10 +1,9 @@
 package edu.usal.negocio.dominio;
 
-import java.awt.List;
-
 public class Aeropuerto {
 
-	private String IDAeropuerto;
+	private int idAeropuerto;
+	private String codigoAeropuerto;
 	private String Ciudad;
 	private Provincia provincia;
 	private Pais pais;
@@ -12,19 +11,31 @@ public class Aeropuerto {
 	
 	public Aeropuerto() {}
 	
-	public Aeropuerto(String iDAeropuerto, String ciudad, Provincia provincia, Pais pais) {
+	public Aeropuerto(int idAeropuerto, String codigoAeropuerto, String ciudad, Provincia provincia, Pais pais) {
 		super();
-		IDAeropuerto = iDAeropuerto;
+		this.idAeropuerto = idAeropuerto;
+		this.codigoAeropuerto = codigoAeropuerto;
 		Ciudad = ciudad;
 		this.provincia = provincia;
 		this.pais = pais;
 	}
-	public String getIDAeropuerto() {
-		return IDAeropuerto;
+	
+	public int getIdAeropuerto() {
+		return idAeropuerto;
 	}
-	public void setIDAeropuerto(String iDAeropuerto) {
-		IDAeropuerto = iDAeropuerto;
+
+	public void setIdAeropuerto(int idAeropuerto) {
+		this.idAeropuerto = idAeropuerto;
 	}
+	
+	public String getCodigoAeropuerto() {
+		return codigoAeropuerto;
+	}
+
+	public void setCodigoAeropuerto(String codigoAeropuerto) {
+		this.codigoAeropuerto = codigoAeropuerto;
+	}
+
 	public String getCiudad() {
 		return Ciudad;
 	}

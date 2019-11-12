@@ -20,7 +20,7 @@ import edu.usal.util.PropertiesUtil;
 
 public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 
-	
+	/*
 	private static Connection getConnection() throws SQLException {
 		
 		Connection DBCon = null;
@@ -36,7 +36,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		
 	} // Cierre de getConnection 
 	
-	
+	*/
 	@Override
 	public List<LineaAerea> obtenerLineaAerea() {
 		
@@ -48,7 +48,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		
 		try {
 			
-			DBCon = getConnection();
+			DBCon = Connect.getConnection();
 			stm = DBCon.createStatement();
 			rsLineaAerea = stm.executeQuery("SELECT * from lineasAereas"); // lineasAereas corresponde con la tabla de la BD aerolinea
 			psAlianza = DBCon.prepareStatement("SELECT * from alianza WHERE nombre_alianza =?"); // Esta tabla aun no esta en la BD.
@@ -100,7 +100,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		
 		try {
 			
-			DBCon = getConnection();
+			DBCon = Connect.getConnection();
 			psLineaAerea = DBCon.prepareStatement("INSERT INTO LineasAereas (nombre_aerolinea,alianza,id_aerolinea) VALUE(?,?,?)");
 			psLineaAerea.setString(1,lineaaerea.getNombreAerolinea());
 			psLineaAerea.setString(2, lineaaerea.getAlianza().getNombre());
@@ -134,7 +134,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		
 		try {
 			
-			DBCon = getConnection();
+			DBCon = Connect.getConnection();
 			psLineaAerea = DBCon.prepareStatement("DELETE FROM LineasAereas WHERE nombre_aerolinea");
 			
 			psLineaAerea.setString(1,BajarLineaAerea.getNombreAerolinea());
@@ -171,7 +171,7 @@ public  class LineaAereaDAOImpDB implements LineaAereaDAO 	{
 		PreparedStatement psLineaAerea = null;
 		
 		try{
-			DBCon = getConnection();
+			DBCon = Connect.getConnection();
 			psLineaAerea=DBCon.prepareStatement("UPDATE aerolineas SET codigo = ? WHERE nombre = ?");
 			
 			psLineaAerea.setString(1, modificarLineaAerea.getCodigo());

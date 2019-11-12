@@ -7,7 +7,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import edu.usal.negocio.dao.interfaces.ClienteDAO;
@@ -38,7 +44,10 @@ public class ClienteDAOImpStream implements ClienteDAO {
 			e.printStackTrace();
 		}
 		return clientes;
-	}
+	} 
+	
+	
+
 
 
 	//

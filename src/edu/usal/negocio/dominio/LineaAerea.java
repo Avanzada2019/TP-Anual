@@ -3,7 +3,9 @@ package edu.usal.negocio.dominio;
 import java.awt.List;
 
 public class LineaAerea {
-
+	
+	private int idLineaAerea;
+	
 	private String NombreAerolinea;
 	private Alianza alianza;
 	private Vuelo vuelos;
@@ -11,14 +13,25 @@ public class LineaAerea {
 	
 	public LineaAerea() {}
 	
-	public LineaAerea(String nombreAerolinea, Alianza alianza, Vuelo vuelos, String codigo) {
+	public LineaAerea(int idLineaAerea, String nombreAerolinea, Alianza alianza, Vuelo vuelos, String codigo) {
 		super();
+		this.idLineaAerea = idLineaAerea;
 		NombreAerolinea = nombreAerolinea;
 		this.alianza = alianza;
 		this.vuelos = vuelos;
 		this.codigo = codigo;
 	}
 	
+	
+	
+	public int getIdLineaAerea() {
+		return idLineaAerea;
+	}
+
+	public void setIdLineaAerea(int idLineaAerea) {
+		this.idLineaAerea = idLineaAerea;
+	}
+
 	public String getCodigo() {
 		return codigo;
 	}

@@ -4,10 +4,12 @@ import java.util.Date;
 
 public class Cliente {
 
+	private int idCliente;
+	
 	private String Nombre;
 	private String Apellido;
-	private static String DNI;
-	private static Pasaporte pasaporte;
+	private String DNI;
+	private Pasaporte pasaporte;
 	private String CUIT_CUIL;
 	private Date FechaDeNacimiento;
 	private String Email;
@@ -17,10 +19,11 @@ public class Cliente {
 	
 	public Cliente() {}
 	
-	public Cliente(String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
+	public Cliente(int idCliente, String nombre, String apellido, String dNI, Pasaporte pasaporte, String cUIT_CUIL,
 			Date fechaDeNacimiento, String email, Telefono telefono, PasajeroFrecuente pasajerofrecuente,
 			Direccion direccion) {
 		//super();
+		this.idCliente = idCliente;
 		this.Nombre = nombre;
 		Apellido = apellido;
 		DNI = dNI;
@@ -34,6 +37,13 @@ public class Cliente {
 	}
 	
 
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 	public String getNombre() {
 		return Nombre;
 	}
@@ -45,18 +55,6 @@ public class Cliente {
 	}
 	public void setApellido(String apellido) {
 		Apellido = apellido;
-	}
-	public static String getDNI() {
-		return DNI;
-	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-	public static Pasaporte getPasaporte() {
-		return pasaporte;
-	}
-	public void setPasaporte(Pasaporte pasaporte) {
-		this.pasaporte = pasaporte;
 	}
 	public String getCUIT_CUIL() {
 		return CUIT_CUIL;
@@ -94,6 +92,23 @@ public class Cliente {
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
+
+	public String getDNI() {
+		return DNI;
+	}
+
+	public void setDNI(String dNI) {
+		DNI = dNI;
+	}
+
+	public Pasaporte getPasaporte() {
+		return pasaporte;
+	}
+
+	public void setPasaporte(Pasaporte pasaporte) {
+		this.pasaporte = pasaporte;
+	}
+	
 	
 	
 }

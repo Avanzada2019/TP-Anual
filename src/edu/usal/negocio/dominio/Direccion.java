@@ -4,6 +4,7 @@ import java.awt.List;
 
 public class Direccion {
 	
+	private int idDireccion;
 	private String Calle;
 	private String Altura;
 	private String Ciudad;
@@ -12,14 +13,22 @@ public class Direccion {
 	private String CodigoPostal;
 	
 	public Direccion() {}
-	public Direccion(String calle, String altura, String ciudad, Provincia provincia, Pais pais, String codigoPostal) {
+	public Direccion(int idDireccion, String calle, String altura, String ciudad, Provincia provincia, Pais pais, String codigoPostal) {
 		super();
+		this.idDireccion = idDireccion;
 		Calle = calle;
 		Altura = altura;
 		Ciudad = ciudad;
 		this.provincia = provincia;
 		this.pais = pais;
 		CodigoPostal = codigoPostal;
+	}
+	
+	public int getId_direccion() {
+		return idDireccion;
+	}
+	public void setId_direccion(int idDireccion) {
+		this.idDireccion = idDireccion;
 	}
 	public String getCalle() {
 		return Calle;

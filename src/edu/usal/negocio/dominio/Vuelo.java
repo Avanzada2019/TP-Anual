@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Vuelo {
 
+	private int idVuelo;
 	private String NumeroVuelo;
 	private int CantidadAsientos;
 	private Aeropuerto AeropuertoSalida;
@@ -15,9 +16,10 @@ public class Vuelo {
 	
 	public Vuelo() {}
 	
-	public Vuelo(String numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
+	public Vuelo(int idVuelo, String numeroVuelo, int cantidadAsientos, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,
 			Date fechaSalida, Date fechaLlegada, String tiempoVuelo) {
 		super();
+		this.idVuelo = idVuelo;
 		NumeroVuelo = numeroVuelo;
 		CantidadAsientos = cantidadAsientos;
 		AeropuertoSalida = aeropuertoSalida;
@@ -26,6 +28,15 @@ public class Vuelo {
 		FechaLlegada = fechaLlegada;
 		TiempoVuelo = tiempoVuelo;
 	}
+	
+	public int getIdVuelo() {
+		return idVuelo;
+	}
+
+	public void setIdVuelo(int idVuelo) {
+		this.idVuelo = idVuelo;
+	}
+
 	public String getNumeroVuelo() {
 		return NumeroVuelo;
 	}

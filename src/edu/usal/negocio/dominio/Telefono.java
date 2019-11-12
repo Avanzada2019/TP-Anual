@@ -2,18 +2,29 @@ package edu.usal.negocio.dominio;
 
 public class Telefono {
 	
+	private int idTelefono;
 	private String NumeroPersonal;
 	private String NumeroCelular;
 	private String NumeroLaboral;
 	
 	public Telefono() {}
 	
-	public Telefono(String numeroPersonal, String numeroCelular, String numeroLaboral) {
+	public Telefono(int idTelefono, String numeroPersonal, String numeroCelular, String numeroLaboral) {
 		super();
+		this.idTelefono = idTelefono;
 		NumeroPersonal = numeroPersonal;
 		NumeroCelular = numeroCelular;
 		NumeroLaboral = numeroLaboral;
 	}
+	
+	public int getId_telefono() {
+		return idTelefono;
+	}
+
+	public void setId_telefono(int idTelefono) {
+		this.idTelefono = idTelefono;
+	}
+
 	public String getNumeroPersonal() {
 		return NumeroPersonal;
 	}
